@@ -37,7 +37,7 @@ SmartHomeAppFinal/
 
 1. Clone the repository:
    ```bash
-   git clone [[repository-url]](https://github.com/Venomous-pie/home_security_final.git)}
+   git clone [(https://github.com/Venomous-pie/home_security_final.git)]
    ```
 
 2. Open the project in Android Studio
