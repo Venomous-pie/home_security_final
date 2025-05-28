@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="splash_background_gray">#333333</color> <!-- Slightly dark gray background -->
+    <color name="splash_text_gray">#BDBDBD</color> <!-- Lighter text for dark theme -->
+    <color name="divider_color">#1FFFFFFF</color> <!-- Lighter divider for dark theme -->
+    <color name="default_dark_surface_color">#333333</color> <!-- General surface/background for dark theme -->
+</resources> 

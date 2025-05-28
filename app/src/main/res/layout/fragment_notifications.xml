@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.notifications.NotificationsFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="16dp">
+
+        <!-- User Info Section -->
+        <RelativeLayout
+            android:id="@+id/userInfoSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="12dp"
+            android:background="?attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/ivAppLogoSmall"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_launcher_adaptive_placeholder"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="12dp"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/ivAppLogoSmall"
+                android:layout_toStartOf="@+id/ivUserInfoDisclosure"
+                android:layout_centerVertical="true">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/tvUserName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/default_user_name"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/tvNewTag"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/new_tag"
+                        android:textColor="@color/white"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:background="@drawable/new_tag_background"
+                        android:paddingStart="6dp"
+                        android:paddingEnd="6dp"
+                        android:paddingTop="2dp"
+                        android:paddingBottom="2dp"
+                        android:layout_marginStart="8dp"
+                        android:visibility="visible"/>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvUserEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/default_user_email"
+                    android:textColor="@color/splash_text_gray"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/ivUserInfoDisclosure"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_chevron_right"
+                android:tint="@color/splash_text_gray"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Device Management Section -->
+        <TextView
+            style="@style/MoreScreenSectionHeader"
+            android:text="@string/account_security_header" />
+
+        <RelativeLayout 
+            android:id="@+id/itemDeviceManagement"
+            style="@style/MoreScreenItemContainer">
+            <ImageView
+                android:id="@+id/ivDeviceManagementIcon"
+                style="@style/MoreScreenItemIcon"
+                android:src="@drawable/ic_phonelink_setup"
+                 android:tint="@color/splash_text_gray"/>
+            <TextView
+                style="@style/MoreScreenItemText"
+                android:layout_toEndOf="@id/ivDeviceManagementIcon"
+                android:text="@string/device_management_label" />
+            <ImageView style="@style/MoreScreenItemDisclosure" />
+        </RelativeLayout>
+
+        <View style="@style/MoreScreenDivider"/>
+
+        <!-- Settings Section -->
+        <TextView
+            style="@style/MoreScreenSectionHeader"
+            android:text="@string/settings_header" />
+
+        <RelativeLayout 
+            android:id="@+id/itemSwitchToCamera"
+            style="@style/MoreScreenItemContainer">
+            <ImageView
+                android:id="@+id/ivSwitchToCameraIcon"
+                style="@style/MoreScreenItemIcon"
+                android:src="@drawable/ic_cameraswitch"
+                android:tint="@color/splash_text_gray"/>
+            <TextView
+                android:id="@+id/tvSwitchModeLabel" 
+                style="@style/MoreScreenItemText"
+                android:layout_toEndOf="@id/ivSwitchToCameraIcon"
+                android:text="@string/switch_to_camera_label" />
+            <ImageView style="@style/MoreScreenItemDisclosure" />
+        </RelativeLayout>
+
+        <RelativeLayout 
+            android:id="@+id/itemViewerName"
+            style="@style/MoreScreenItemContainer">
+            <ImageView
+                android:id="@+id/ivViewerNameIcon"
+                style="@style/MoreScreenItemIcon"
+                android:src="@drawable/ic_account_circle"
+                android:tint="@color/splash_text_gray"/>
+            <TextView
+                style="@style/MoreScreenItemText"
+                android:layout_toEndOf="@id/ivViewerNameIcon"
+                android:text="@string/viewer_name_label" />
+            <ImageView style="@style/MoreScreenItemDisclosure" />
+        </RelativeLayout>
+
+        <!-- Theme Selection Item -->
+        <RelativeLayout 
+            android:id="@+id/itemTheme"
+            style="@style/MoreScreenItemContainer">
+            <ImageView
+                android:id="@+id/ivThemeIcon"
+                style="@style/MoreScreenItemIcon"
+                android:src="@drawable/ic_brightness_auto" 
+                android:tint="@color/splash_text_gray"/>
+            <TextView
+                style="@style/MoreScreenItemText"
+                android:layout_toEndOf="@id/ivThemeIcon"
+                android:text="@string/theme_header" />
+            <TextView
+                android:id="@+id/tvCurrentTheme"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="8dp"
+                android:textColor="?android:attr/textColorSecondary" 
+                tools:text="System Default" /> 
+        </RelativeLayout>
+
+    </LinearLayout>
+</ScrollView>

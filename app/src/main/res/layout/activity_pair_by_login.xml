@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash_background_gray"
+    android:padding="16dp"
+    tools:context=".PairByLoginActivity">
+
+    <ImageView
+        android:id="@+id/ivBackArrowPairByLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="@string/back_button_desc"
+        android:tint="@color/splash_text_gray"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/tvPairByLoginTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivBackArrowPairByLogin"
+        android:layout_marginTop="24dp"
+        android:text="Pair up by logging in on the device you prepared"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/splash_text_gray"/>
+
+    <TextView
+        android:id="@+id/tvPairByLoginSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPairByLoginTitle"
+        android:layout_marginTop="8dp"
+        android:text="Log in to the app with the same account on the device you prepared (mobile phone, tablet, or computer)."
+        android:textSize="16sp"
+        android:textColor="@color/splash_text_gray"/>
+
+    <ImageView
+        android:id="@+id/ivPairingIllustration"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@id/tvPairByLoginSubtitle"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_pairing_illustration"
+        android:scaleType="fitCenter"
+        android:contentDescription="Pairing illustration"/>
+
+    <Button
+        android:id="@+id/btnPairByQRCode"
+        style="?attr/materialButtonOutlinedStyle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="24dp"
+        android:text="Or pair up by QR code"
+        android:textColor="@color/splash_text_gray"
+        app:strokeColor="@color/splash_text_gray"
+        app:icon="@drawable/ic_qr_code_scanner"
+        app:iconTint="@color/splash_text_gray"
+        app:cornerRadius="20dp"/>
+
+</RelativeLayout> 

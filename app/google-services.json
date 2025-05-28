@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "402676223752",
+    "project_id": "smarthomesecurity-f3859",
+    "storage_bucket": "smarthomesecurity-f3859.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402676223752:android:3586a0bf5f7707dbe5a6bd",
+        "android_client_info": {
+          "package_name": "com.example.smarthomeappfinal"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3RG0442GlGkfttZlOjp1rTFvDNXmrg3M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

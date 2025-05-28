@@ -1,0 +1,298 @@
+--------- beginning of crash
+--------- beginning of system
+2025-05-28 00:40:41.062 13084-13084 TranClassInfo           com.example.smarthomeappfinal        W  instance failed. com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl from com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent
+                                                                                                    java.lang.ClassNotFoundException: com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl
+                                                                                                    	at java.lang.Class.classForName(Native Method)
+                                                                                                    	at java.lang.Class.forName(Class.java:607)
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124)
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32)
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44)
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562)
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079)
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96)
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243)
+                                                                                                    	at android.os.Looper.loop(Looper.java:338)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064)
+                                                                                                    Caused by: java.lang.ClassNotFoundException: Didn't find class "com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl" on path: DexPathList[[],nativeLibraryDirectories=[/system/lib64, /system_ext/lib64]]
+                                                                                                    	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:637)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:573)
+                                                                                                    	at java.lang.Class.classForName(Native Method) 
+                                                                                                    	at java.lang.Class.forName(Class.java:607) 
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124) 
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32) 
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44) 
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562) 
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885) 
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079) 
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96) 
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:338) 
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506) 
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602) 
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064) 
+2025-05-28 00:40:41.470 13084-13084 TranChoreographerImpl   com.example.smarthomeappfinal        E  skippedFrames: 32
+2025-05-28 00:40:50.105  1714-1848  debug_Tran...Controller system_server                        E  this is Task{c3699cb #1946 type=standard A=10204:com.example.smarthomeappfinal} isVisibleRequested false
+2025-05-28 00:40:50.250  1714-4755  debug_Tran...Controller system_server                        E  this is Task{c3699cb #1946 type=standard A=10204:com.example.smarthomeappfinal} isVisibleRequested false
+2025-05-28 00:40:51.469 13726-13726 TranClassInfo           com.example.smarthomeappfinal        W  instance failed. com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl from com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent
+                                                                                                    java.lang.ClassNotFoundException: com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl
+                                                                                                    	at java.lang.Class.classForName(Native Method)
+                                                                                                    	at java.lang.Class.forName(Class.java:607)
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124)
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32)
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44)
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562)
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079)
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96)
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243)
+                                                                                                    	at android.os.Looper.loop(Looper.java:338)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064)
+                                                                                                    Caused by: java.lang.ClassNotFoundException: Didn't find class "com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl" on path: DexPathList[[],nativeLibraryDirectories=[/system/lib64, /system_ext/lib64]]
+                                                                                                    	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:637)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:573)
+                                                                                                    	at java.lang.Class.classForName(Native Method) 
+                                                                                                    	at java.lang.Class.forName(Class.java:607) 
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124) 
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32) 
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44) 
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562) 
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885) 
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079) 
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96) 
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:338) 
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506) 
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602) 
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064) 
+2025-05-28 00:42:39.944  1714-2348  debug_Tran...Controller system_server                        E  this is Task{f93f348 #1947 type=standard A=10204:com.example.smarthomeappfinal} isVisibleRequested false
+2025-05-28 00:42:43.556 21946-21946 TranClassInfo           com.example.smarthomeappfinal        W  instance failed. com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl from com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent
+                                                                                                    java.lang.ClassNotFoundException: com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl
+                                                                                                    	at java.lang.Class.classForName(Native Method)
+                                                                                                    	at java.lang.Class.forName(Class.java:607)
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124)
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32)
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44)
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562)
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079)
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96)
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243)
+                                                                                                    	at android.os.Looper.loop(Looper.java:338)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064)
+                                                                                                    Caused by: java.lang.ClassNotFoundException: Didn't find class "com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl" on path: DexPathList[[],nativeLibraryDirectories=[/system/lib64, /system_ext/lib64]]
+                                                                                                    	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:637)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:573)
+                                                                                                    	at java.lang.Class.classForName(Native Method) 
+                                                                                                    	at java.lang.Class.forName(Class.java:607) 
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124) 
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32) 
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44) 
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562) 
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885) 
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079) 
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96) 
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:338) 
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506) 
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602) 
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064) 
+2025-05-28 00:42:43.794 21946-21946 TranChoreographerImpl   com.example.smarthomeappfinal        E  skippedFrames: 30
+2025-05-28 00:46:25.348  1714-2659  debug_Tran...Controller system_server                        E  this is Task{2c816a7 #1948 type=standard A=10204:com.example.smarthomeappfinal} isVisibleRequested false
+2025-05-28 00:46:25.505  1714-2659  debug_Tran...Controller system_server                        E  this is Task{2c816a7 #1948 type=standard A=10204:com.example.smarthomeappfinal} isVisibleRequested false
+--------- beginning of main
+2025-05-28 00:48:36.975  1714-1846  TABE-TranT...ponentImpl system_server                        E  SEND_INSTALL_INFO_MSG: 1 ,infoPkgInstallInfo{mPackageName='com.example.smarthomeappfinal', mPackageVersionCode=1, mPackageSize=0, mCode=1, mInstaller='[INSTALL_FROM_ADB]', mInstallDurationTimes=545s, mDataLoader=0}
+2025-05-28 00:48:38.281   967-1036  BufferQueueDebug        surfaceflinger                       E  [ActivityRecord{d61bf17 u0 com.example.smarthomeappfinal/.SplashActivity t1949}#24123](this:0xb40000746f847700,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'ActivityRecord{d61bf17 u0 com.example.smarthomeappfinal/.SplashActivity t1949}#24123'
+2025-05-28 00:48:38.366   967-1036  BufferQueueDebug        surfaceflinger                       E  [b9e46e8 Splash Screen com.example.smarthomeappfinal#24124](this:0xb40000746f7b35c0,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'b9e46e8 Splash Screen com.example.smarthomeappfinal#24124'
+2025-05-28 00:48:38.427 21952-21952 arthomeappfinal         com.example.smarthomeappfinal        I  Late-enabling -Xcheck:jni
+2025-05-28 00:48:38.441   967-1036  BufferQueueDebug        surfaceflinger                       E  [Splash Screen com.example.smarthomeappfinal#24125](this:0xb40000746f7adaa0,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'Splash Screen com.example.smarthomeappfinal#24125'
+2025-05-28 00:48:38.461 21952-21952 arthomeappfinal         com.example.smarthomeappfinal        I  Using CollectorTypeCMC GC.
+2025-05-28 00:48:38.545 21952-21952 ziparchive              com.example.smarthomeappfinal        W  Unable to open '/data/app/~~a6H7ldbiRBk6uRjuHSnXJg==/com.example.smarthomeappfinal-019bi0gxg6EIhlVqfE-P2A==/base.dm': No such file or directory
+2025-05-28 00:48:38.545 21952-21952 ziparchive              com.example.smarthomeappfinal        W  Unable to open '/data/app/~~a6H7ldbiRBk6uRjuHSnXJg==/com.example.smarthomeappfinal-019bi0gxg6EIhlVqfE-P2A==/base.dm': No such file or directory
+2025-05-28 00:48:38.718 21952-21952 LoadedApk               com.example.smarthomeappfinal        I  No resource references to update in package com.transsion.theme.icon
+2025-05-28 00:48:38.769   967-2654  BufferQueueDebug        surfaceflinger                       E  [8112796 ActivityRecordInputSink com.example.smarthomeappfinal/.SplashActivity#24128](this:0xb40000746f80e7c0,id:-1,api:0,p:-1,c:-1) id info cannot be read from '8112796 ActivityRecordInputSink com.example.smarthomeappfinal/.SplashActivity#24128'
+2025-05-28 00:48:38.835 21952-21952 M-ProMotion             com.example.smarthomeappfinal        I  M-ProMotion is disabled
+2025-05-28 00:48:38.846 21952-14655 QT                      com.example.smarthomeappfinal        W  qt_process_init() called
+2025-05-28 00:48:38.847 21952-14655 QT                      com.example.smarthomeappfinal        W  Support!!
+2025-05-28 00:48:38.898 21952-14655 libMEOW_gift            com.example.smarthomeappfinal        I  open /data/performance/gift/arc.ini
+2025-05-28 00:48:38.919 21952-21952 TranVersion             com.example.smarthomeappfinal        I  TranVersion static initializer: default = 34.3.1.1
+                                                                                                     debug = false, debug_version = 34.3.1.1
+2025-05-28 00:48:38.921 21952-21952 System                  com.example.smarthomeappfinal        W  ClassLoader referenced unknown path: /system_ext/framework/multidisplay.jar
+2025-05-28 00:48:38.924 21952-21952 TranClassInfo           com.example.smarthomeappfinal        W  instance failed. com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl from com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent
+                                                                                                    java.lang.ClassNotFoundException: com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl
+                                                                                                    	at java.lang.Class.classForName(Native Method)
+                                                                                                    	at java.lang.Class.forName(Class.java:607)
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124)
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32)
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44)
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562)
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885)
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079)
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139)
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96)
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243)
+                                                                                                    	at android.os.Looper.loop(Looper.java:338)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064)
+                                                                                                    Caused by: java.lang.ClassNotFoundException: Didn't find class "com.transsion.display.multidisplay.core.MultiDisplayCoreComponentImpl" on path: DexPathList[[],nativeLibraryDirectories=[/system/lib64, /system_ext/lib64]]
+                                                                                                    	at dalvik.system.BaseDexClassLoader.findClass(BaseDexClassLoader.java:259)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:637)
+                                                                                                    	at java.lang.ClassLoader.loadClass(ClassLoader.java:573)
+                                                                                                    	at java.lang.Class.classForName(Native Method) 
+                                                                                                    	at java.lang.Class.forName(Class.java:607) 
+                                                                                                    	at com.transsion.hubcore.utils.TranClassInfo.getImpl(TranClassInfo.java:124) 
+                                                                                                    	at com.transsion.hubcore.multidisplay.ITranMultiDisplayCoreComponent.Instance(ITranMultiDisplayCoreComponent.java:32) 
+                                                                                                    	at com.transsion.hubcore.app.TranActivityImpl.attach(TranActivityImpl.java:44) 
+                                                                                                    	at android.app.Activity.attach(Activity.java:8562) 
+                                                                                                    	at android.app.ActivityThread.performLaunchActivity(ActivityThread.java:3885) 
+                                                                                                    	at android.app.ActivityThread.handleLaunchActivity(ActivityThread.java:4079) 
+                                                                                                    	at android.app.servertransaction.LaunchActivityItem.execute(LaunchActivityItem.java:114) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.executeCallbacks(TransactionExecutor.java:139) 
+                                                                                                    	at android.app.servertransaction.TransactionExecutor.execute(TransactionExecutor.java:96) 
+                                                                                                    	at android.app.ActivityThread$H.handleMessage(ActivityThread.java:2552) 
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:106) 
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243) 
+                                                                                                    	at android.os.Looper.loop(Looper.java:338) 
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506) 
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method) 
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602) 
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064) 
+2025-05-28 00:48:39.014 21952-21952 arthomeappfinal         com.example.smarthomeappfinal        W  Accessing hidden method Landroid/view/View;->computeFitSystemWindows(Landroid/graphics/Rect;Landroid/graphics/Rect;)Z (unsupported, reflection, allowed)
+2025-05-28 00:48:39.014 21952-21952 arthomeappfinal         com.example.smarthomeappfinal        W  Accessing hidden method Landroid/view/ViewGroup;->makeOptionalFitsSystemWindows()V (unsupported, reflection, allowed)
+2025-05-28 00:48:39.116 21952-14651 PowerHalWrapper         com.example.smarthomeappfinal        I  PowerHalWrapper.getInstance 
+2025-05-28 00:48:39.137 21952-21952 SurfaceFactory          com.example.smarthomeappfinal        I  [static] sSurfaceFactory = com.transsion.rt.SurfaceFactoryImpl@f488747
+2025-05-28 00:48:39.165   967-1036  BufferQueueDebug        surfaceflinger                       E  [cd155a com.example.smarthomeappfinal/com.example.smarthomeappfinal.SplashActivity#24131](this:0xb40000746f79f6d0,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'cd155a com.example.smarthomeappfinal/com.example.smarthomeappfinal.SplashActivity#24131'
+2025-05-28 00:48:39.187   967-1037  BufferQueueDebug        surfaceflinger                       E  [com.example.smarthomeappfinal/com.example.smarthomeappfinal.SplashActivity#24132](this:0xb40000746f794090,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'com.example.smarthomeappfinal/com.example.smarthomeappfinal.SplashActivity#24132'
+2025-05-28 00:48:39.204 21952-21952 FBI                     com.example.smarthomeappfinal        E  fbcNotifyBufferUX is NULL: undefined symbol: fbcNotifyBufferUX
+2025-05-28 00:48:39.207 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:-1
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:1024
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:2048
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:0
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:-1
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:4096
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:2
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:4
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:8
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:16
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:32
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:64
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:128
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:256
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:-1
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:8192
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:0
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:1
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:2
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:3
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:4
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:5
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:6
+2025-05-28 00:48:39.208 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:7
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:8
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:9
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:10
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:11
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:12
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:13
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:1001
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:0
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:1
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:2
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:4
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:0
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:1
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:0
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:1
+2025-05-28 00:48:39.209 21952-21952 TranWindow...rationImpl com.example.smarthomeappfinal        I  field:com.transsion.multiwindow.showcaption
+2025-05-28 00:48:39.209 21952-21952 config_debug            com.example.smarthomeappfinal        I  updateDecorCaptionStatus: {0.85 515mcc2mnc [en_US] ldltr sw360dp w360dp h764dp 480dpi nrml long widecg port night finger -keyb/v/h -nav/h winConfig={ mBounds=Rect(0, 0 - 1080, 2400) mAppBounds=Rect(0, 108 - 1080, 2400) mMaxBounds=Rect(0, 0 - 1080, 2400) mDisplayRotation=ROTATION_0 mWindowingMode=fullscreen mDisplayWindowingMode=fullscreen mMultiWindowMode=normal mMultiWindowId=0 mWindowResiable=6 mInLargeScreen=-1 mActivityType=standard mAlwaysOnTop=undefined mRotation=ROTATION_0 mUiOptSpec=-1 mCurDisplayId=-1} s.1 fontWeightAdjustment=0} fromMultiWindow: true
+2025-05-28 00:48:39.233 21952-14653 OpenGLRenderer          com.example.smarthomeappfinal        E  Unable to match the desired swap behavior.
+2025-05-28 00:48:39.301   967-1036  BufferQueueDebug        surfaceflinger                       E  [Surface(name=cd155a com.example.smarthomeappfinal/com.example.smarthomeappfinal.SplashActivity)/@0x375d36b - animation-leash of starting_reveal#24135](this:0xb40000746f83ee50,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'Surface(name=cd155a com.example.smarthomeappfinal/com.example.smarthomeappfinal.SplashActivity)/@0x375d36b - animation-leash of starting_reveal#24135'
+2025-05-28 00:48:39.686   967-1036  BufferQueueDebug        surfaceflinger                       E  [Surface(name=b9e46e8 Splash Screen com.example.smarthomeappfinal)/@0xa3ac049 - animation-leash of window_animation#24137](this:0xb40000746f914780,id:-1,api:0,p:-1,c:-1) id info cannot be read from 'Surface(name=b9e46e8 Splash Screen com.example.smarthomeappfinal)/@0xa3ac049 - animation-leash of window_animation#24137'
+2025-05-28 00:48:40.532 21952-14626 arthomeappfinal         com.example.smarthomeappfinal        I  Compiler allocated 6289KB to compile void android.view.ViewRootImpl.performTraversals()
+2025-05-28 00:48:42.069 21952-21952 AndroidRuntime          com.example.smarthomeappfinal        E  FATAL EXCEPTION: main
+                                                                                                    Process: com.example.smarthomeappfinal, PID: 21952
+                                                                                                    android.content.ActivityNotFoundException: Unable to find explicit activity class {com.example.smarthomeappfinal/com.example.smarthomeappfinal.LoginActivity}; have you declared this activity in your AndroidManifest.xml, or does your intent not match its declared <intent-filter>?
+                                                                                                    	at android.app.Instrumentation.checkStartActivityResult(Instrumentation.java:2260)
+                                                                                                    	at android.app.Instrumentation.execStartActivity(Instrumentation.java:1895)
+                                                                                                    	at android.app.Activity.startActivityForResult(Activity.java:5607)
+                                                                                                    	at androidx.activity.ComponentActivity.startActivityForResult(ComponentActivity.java:780)
+                                                                                                    	at android.app.Activity.startActivityForResult(Activity.java:5565)
+                                                                                                    	at androidx.activity.ComponentActivity.startActivityForResult(ComponentActivity.java:761)
+                                                                                                    	at android.app.Activity.startActivity(Activity.java:6063)
+                                                                                                    	at android.app.Activity.startActivity(Activity.java:6030)
+                                                                                                    	at com.example.smarthomeappfinal.SplashActivity.onCreate$lambda$0(SplashActivity.kt:19)
+                                                                                                    	at com.example.smarthomeappfinal.SplashActivity.$r8$lambda$DBRL_2MptgQHuqOYsxuen_C1FLY(Unknown Source:0)
+                                                                                                    	at com.example.smarthomeappfinal.SplashActivity$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+                                                                                                    	at android.os.Handler.handleCallback(Handler.java:958)
+                                                                                                    	at android.os.Handler.dispatchMessage(Handler.java:99)
+                                                                                                    	at android.os.Looper.loopOnce(Looper.java:243)
+                                                                                                    	at android.os.Looper.loop(Looper.java:338)
+                                                                                                    	at android.app.ActivityThread.main(ActivityThread.java:8506)
+                                                                                                    	at java.lang.reflect.Method.invoke(Native Method)
+                                                                                                    	at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602)
+                                                                                                    	at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.Instrumentation.checkStartActivityResult(Instrumentation.java:2260)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.Instrumentation.execStartActivity(Instrumentation.java:1895)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.Activity.startActivityForResult(Activity.java:5607)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at androidx.activity.ComponentActivity.startActivityForResult(ComponentActivity.java:780)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.Activity.startActivityForResult(Activity.java:5565)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at androidx.activity.ComponentActivity.startActivityForResult(ComponentActivity.java:761)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.Activity.startActivity(Activity.java:6063)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.Activity.startActivity(Activity.java:6030)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at com.example.smarthomeappfinal.SplashActivity.onCreate$lambda$0(SplashActivity.kt:19)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at com.example.smarthomeappfinal.SplashActivity.$r8$lambda$DBRL_2MptgQHuqOYsxuen_C1FLY(Unknown Source:0)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at com.example.smarthomeappfinal.SplashActivity$$ExternalSyntheticLambda0.run(D8$$SyntheticClass:0)
+2025-05-28 00:48:42.069 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.os.Handler.handleCallback(Handler.java:958)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.os.Handler.dispatchMessage(Handler.java:99)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.os.Looper.loopOnce(Looper.java:243)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.os.Looper.loop(Looper.java:338)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at android.app.ActivityThread.main(ActivityThread.java:8506)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at java.lang.reflect.Method.invoke(Native Method)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at com.android.internal.os.RuntimeInit$MethodAndArgsCaller.run(RuntimeInit.java:602)
+2025-05-28 00:48:42.070 21952-21952 ExceptionHandle         com.example.smarthomeappfinal        I  at com.android.internal.os.ZygoteInit.main(ZygoteInit.java:1064)
+2025-05-28 00:48:42.105  1714-1748  TranDetect...lerService system_server                        E  appCrashDetected processName: com.example.smarthomeappfinal
+2025-05-28 00:48:47.111  1714-5373  debug_Tran...Controller system_server                        E  this is Task{54b4059 #1949 type=standard A=10204:com.example.smarthomeappfinal} isVisibleRequested false

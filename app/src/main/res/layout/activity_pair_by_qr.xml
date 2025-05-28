@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash_background_gray" 
+    android:padding="16dp"
+    tools:context=".PairByQRActivity">
+
+    <ImageView
+        android:id="@+id/ivClosePairByQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_close"
+        android:contentDescription="Close"
+        android:tint="@color/splash_text_gray"
+        android:padding="8dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/tvHelpPairByQR"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Help"
+        android:textColor="@color/splash_text_gray"
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignBaseline="@id/ivClosePairByQR" />
+
+    <TextView
+        android:id="@+id/tvScanToPairTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivClosePairByQR"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="48dp"
+        android:text="Scan to pair up with another phone/tablet"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:textColor="@color/splash_text_gray"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/tvScanToPairSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvScanToPairTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="8dp"
+        android:text="Use another device to scan this QR code or sign in with the same account."
+        android:textSize="16sp"
+        android:textColor="@color/splash_text_gray"
+        android:gravity="center"/>
+
+    <ImageView
+        android:id="@+id/ivQRCode"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_below="@id/tvScanToPairSubtitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:scaleType="fitCenter"
+        android:background="@android:color/white" 
+        android:contentDescription="QR Code"/>
+
+    <TextView
+        android:id="@+id/tvExpirationTimer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivQRCode"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="This code will expire in 29 min 59 sec."
+        android:textSize="14sp"
+        android:textColor="@color/splash_text_gray"/>
+
+</RelativeLayout> 

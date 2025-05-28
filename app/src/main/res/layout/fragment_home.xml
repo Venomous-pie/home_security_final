@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp"
+    tools:context=".ui.home.HomeFragment">
+
+    <ImageView
+        android:id="@+id/ivNoCamerasIcon"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_camera_placeholder" 
+        android:contentDescription="No cameras icon"
+        app:tint="#CCCCCC" />
+
+    <TextView
+        android:id="@+id/tvNoCamerasMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivNoCamerasIcon"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="You don\'t have any cameras yet."
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+    <Button
+        android:id="@+id/btnAddCamera"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvNoCamerasMessage"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="+ Add a Camera"
+        android:backgroundTint="@color/splash_text_gray" 
+        android:textColor="@color/white"
+        android:paddingStart="32dp"
+        android:paddingEnd="32dp"
+        app:cornerRadius="20dp"/>
+
+</RelativeLayout>

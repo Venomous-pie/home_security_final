@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash_background_gray"
+    tools:context=".SplashActivity">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <ImageView
+            android:id="@+id/splash_logo"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_launcher_adaptive_placeholder"
+            android:contentDescription="@string/app_logo_description" />
+
+        <TextView
+            android:id="@+id/header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="MEMBERS"
+            android:textSize="20sp"
+            android:textColor="@color/splash_text_gray"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/name1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ROZANO, RICA"
+            android:textSize="20sp"
+            android:textColor="@color/splash_text_gray"
+            android:layout_marginTop="24dp"/>
+
+        <TextView
+            android:id="@+id/name2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ROY, SHERYN MAE"
+            android:textSize="20sp"
+            android:textColor="@color/splash_text_gray"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/name3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PANUNCIALMAN, JIMMY"
+            android:textSize="20sp"
+            android:textColor="@color/splash_text_gray"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/name4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SULLANO, JAY"
+            android:textSize="20sp"
+            android:textColor="@color/splash_text_gray"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+</RelativeLayout> 

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash_background_gray"
+    android:padding="16dp"
+    tools:context=".RegisterActivity">
+
+    <ImageView
+        android:id="@+id/ivBackArrowRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="@string/back_button_desc"
+        android:tint="@color/splash_text_gray"
+        android:padding="8dp"/>
+
+    <LinearLayout
+        android:id="@+id/llAppBrandingRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivBackArrowRegister"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dp">
+
+        <ImageView
+            android:id="@+id/ivAppLogoPlaceholderRegister"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/ic_launcher_adaptive_placeholder"
+            android:contentDescription="@string/app_logo_description" />
+
+        <TextView
+            android:id="@+id/tvAppNameRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name_full"
+            android:textSize="22sp"
+            android:textColor="@color/splash_text_gray"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/tvAppTaglineRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create Your Account"
+            android:textSize="16sp"
+            android:textColor="@color/splash_text_gray"/>
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/ivMainPlaceholderRegister"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/llAppBrandingRegister"
+        android:layout_marginTop="20dp"
+        android:src="@android:drawable/ic_menu_gallery" 
+        android:scaleType="centerCrop"
+        android:background="#DDDDDD"
+        android:contentDescription="@string/main_image_placeholder_desc"/>
+
+    <EditText
+        android:id="@+id/etRegisterEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivMainPlaceholderRegister"
+        android:layout_marginTop="20dp"
+        android:hint="@string/hint_email"
+        android:inputType="textEmailAddress"
+        android:backgroundTint="@color/splash_text_gray"
+        android:textColor="@color/splash_text_gray"
+        android:textColorHint="@color/splash_text_gray"/>
+
+    <EditText
+        android:id="@+id/etRegisterPassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRegisterEmail"
+        android:layout_marginTop="10dp"
+        android:hint="@string/hint_password"
+        android:inputType="textPassword"
+        android:backgroundTint="@color/splash_text_gray"
+        android:textColor="@color/splash_text_gray"
+        android:textColorHint="@color/splash_text_gray"/>
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/etRegisterPassword"
+        android:layout_marginTop="20dp"
+        android:text="Register"
+        android:backgroundTint="@color/splash_text_gray"
+        android:textColor="@color/white"/>
+
+    <TextView
+        android:id="@+id/tvLoginLink"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btnRegister"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:padding="8dp"
+        android:text="Already have an account? Login here"
+        android:textColor="@color/splash_text_gray" 
+        android:clickable="true"
+        android:focusable="true" />
+
+</RelativeLayout> 

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/splash_background_gray"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:id="@+id/tvLoginTitlePlaceholder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Smart Home Security &amp; Control Hub"
+        android:textSize="24sp"
+        android:textColor="@color/splash_text_gray"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"/>
+
+    <ImageView
+        android:id="@+id/ivLoginImagePlaceholder"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_launcher_adaptive_placeholder" 
+        android:layout_below="@id/tvLoginTitlePlaceholder"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:contentDescription="[Placeholder: Image]"/>
+
+    <Button
+        android:id="@+id/btnLoginSignUp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btnLoginGuest"
+        android:text="Sign Up / Log In"
+        android:backgroundTint="@color/splash_text_gray" 
+        android:textColor="@color/white"
+        android:layout_marginBottom="10dp"/>
+
+    <Button
+        android:id="@+id/btnLoginGuest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="Continue as Guest"
+        android:backgroundTint="@color/splash_background_gray" 
+        android:textColor="@color/splash_text_gray"
+        style="?attr/materialButtonOutlinedStyle" 
+        app:strokeColor="@color/splash_text_gray"
+        android:layout_marginBottom="30dp"/>
+
+</RelativeLayout> 

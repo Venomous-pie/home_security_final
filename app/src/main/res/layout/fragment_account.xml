@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.account.AccountFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- General Section -->
+        <TextView
+            android:id="@+id/tvGeneralHeader"
+            style="@style/MoreScreenSectionHeader" 
+            android:text="@string/general_header"
+            android:layout_marginStart="0dp"/>
+
+        <!-- Name -->
+        <RelativeLayout
+            android:id="@+id/itemAccountName"
+            style="@style/MoreScreenItemContainer"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:id="@+id/tvNameLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/name_label"
+                style="@style/MoreScreenItemText"/>
+            <TextView
+                android:id="@+id/tvNameValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                tools:text="Claire Jem Dedicatoria"
+                android:textColor="?android:attr/textColorSecondary"/>
+        </RelativeLayout>
+        <View style="@style/MoreScreenDivider" android:layout_marginStart="0dp" android:layout_marginEnd="0dp"/>
+
+        <!-- Account (Email) -->
+        <RelativeLayout
+            android:id="@+id/itemAccountEmail"
+            style="@style/MoreScreenItemContainer"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp">
+            <TextView
+                android:id="@+id/tvAccountLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_account" 
+                style="@style/MoreScreenItemText"/>
+            <TextView
+                android:id="@+id/tvAccountEmailValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                tools:text="dedicatoriacj7@gmail.com"
+                android:textColor="?android:attr/textColorSecondary"/>
+        </RelativeLayout>
+        <View style="@style/MoreScreenDivider" android:layout_marginStart="0dp" android:layout_marginEnd="0dp"/>
+
+        <!-- Password -->
+        <RelativeLayout
+            android:id="@+id/itemAccountPassword"
+            style="@style/MoreScreenItemContainer"
+            android:paddingStart="0dp"
+            android:paddingEnd="0dp"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:id="@+id/tvPasswordLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/password_label"
+                style="@style/MoreScreenItemText"/>
+            <TextView
+                android:id="@+id/tvPasswordValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/create_action"
+                android:layout_toStartOf="@id/ivPasswordDisclosure" 
+                android:layout_centerVertical="true"
+                android:textColor="?android:attr/textColorSecondary"/>
+            <ImageView 
+                android:id="@+id/ivPasswordDisclosure"
+                style="@style/MoreScreenItemDisclosure"/>
+        </RelativeLayout>
+        <View style="@style/MoreScreenDivider" android:layout_marginStart="0dp" android:layout_marginEnd="0dp"/>
+
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/logout_button_text"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="?attr/colorError"
+            android:textColor="?attr/colorOnError"/>
+
+    </LinearLayout>
+</ScrollView> 

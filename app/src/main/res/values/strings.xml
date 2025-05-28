@@ -1,0 +1,103 @@
+<resources>
+    <string name="app_name">SmartHomeAppFinal</string>
+    <string name="title_home">Camera</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">More</string>
+    <string name="app_logo_description">Application Logo</string>
+    <string name="alfred_camera_logo_desc">Alfred Camera Logo</string>
+
+    <!-- Strings for Email Login Screen -->
+    <string name="app_name_full">Smart Home Security &amp; Control Hub</string>
+    <string name="app_tagline">Control Your Comfort, Secure Your Space</string>
+    <string name="back_button_desc">Back</string>
+    <string name="main_image_placeholder_desc">Main illustrative image</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="login_button_text">Login</string>
+    <string name="register_link_text">Don\'t have an account? <![CDATA[<u>Register here</u>]]></string>
+    <string name="continue_with_email">Continue with Email</string>
+    <string name="terms_and_policy">By signing up, you agree to the <![CDATA[<a href="https://example.com/terms">Terms of Service</a>]]> and <![CDATA[<a href="https://example.com/privacy">Privacy Policy</a>]]></string>
+    <string name="or_separator">or</string>
+    <string name="scan_to_link">Scan to Link to Viewer Device</string>
+
+    <string-array name="viewer_options_array">
+        <item>Monitor</item>
+        <item>Camera</item>
+    </string-array>
+
+    <!-- Strings for "More" (Notifications) Screen -->
+    <string name="more_title">More</string>
+    <string name="alfred_camera_title">AlfredCamera</string>
+    <string name="free_user_tag">FREE USER</string>
+    <string name="new_tag">NEW</string>
+    <string name="default_user_name">User Name</string>
+    <string name="default_user_email">user.email@example.com</string>
+    <string name="account_security_header">Account Security</string>
+    <string name="app_lock_label">App Lock</string>
+    <string name="device_management_label">Device Management</string>
+    <string name="subscription_header">Subscription</string>
+    <string name="get_hd_quality_label">Get HD Quality</string>
+    <string name="settings_header">Settings</string>
+    <string name="switch_to_camera_label">Switch to Camera</string>
+    <string name="viewer_name_label">Viewer Name</string>
+    <string name="notifications_label">Notifications</string>
+    <string name="auto_system_theme_label">Auto System Theme</string>
+    <string name="theme_header">Theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system_default">System Default</string>
+    <string name="others_header">Others</string>
+    <string name="follow_us_label">Follow Us</string>
+    <string name="title_activity_prepare_device">PrepareDeviceActivity</string>
+    <string name="prepare_device_title">Prepare the Other Device</string>
+    <string name="prepare_device_subtitle">How would you like to use the other device?</string>
+    <string name="mobile_device_option">Mobile Device</string>
+    <string name="recommended_tag">Recommended</string>
+    <string name="set_up_later_link"><u>Set up later</u></string>
+    <string name="title_activity_pair_by_login">PairByLoginActivity</string>
+    <string name="pair_by_login_title">Pair up by logging in</string>
+    <string name="pair_by_login_subtitle">Make sure both devices are logged in to the same account.</string>
+    <string name="or_pair_up_by_qr_code_button">Or pair up by QR code</string>
+    <string name="title_activity_pair_by_qr">PairByQRActivity</string>
+    <string name="close_button_description">Close</string>
+    <string name="help_button_description">Help</string>
+    <string name="pair_by_qr_title">Scan to pair up</string>
+    <string name="pair_by_qr_subtitle">The QR code is valid for 30 minutes</string>
+    <string name="qr_code_image_description">QR Code for pairing</string>
+    <string name="qr_code_timer_placeholder">QR code will expire in --:--</string>
+    <string name="camera_not_found_message">You don\'t have any cameras yet.</string>
+    <string name="add_camera_button_text">Add a Camera</string>
+
+    <!-- Strings for Account Screen -->
+    <string name="title_account">Account</string>
+    <string name="general_header">General</string>
+    <string name="name_label">Name</string>
+    <string name="password_label">Password</string>
+    <string name="create_action">Create</string> <!-- For password creation/update -->
+    <string name="logout_button_text">Logout</string>
+    <string name="confirm_logout_title">Confirm Logout</string>
+    <string name="confirm_logout_message">Are you sure you want to log out?</string>
+    <string name="yes_action">Yes</string>
+    <string name="no_action">No</string>
+
+    <!-- Strings for Change Username -->
+    <string name="change_username_title">Change Username</string>
+    <string name="hint_new_username">New Username</string>
+    <string name="username_updated_success">Username updated successfully</string>
+    <string name="username_update_failed">Failed to update username</string>
+    <string name="save_action">Save</string>
+
+    <!-- Strings for Device Management Placeholder -->
+    <string name="title_device_management">Device Management</string>
+    <string name="device_management_placeholder_text">Device Management Page - Coming Soon!</string>
+
+    <!-- Strings for Startup Mode Toggle -->
+    <string name="switch_to_camera_mode_label">Switch to Camera Mode</string>
+    <string name="switch_to_monitor_mode_label">Switch to Monitor Mode</string>
+    <string name="startup_mode_changed_message">Startup mode changed. The app will restart to apply.</string>
+
+    <!-- Strings for Navigation Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+</resources>

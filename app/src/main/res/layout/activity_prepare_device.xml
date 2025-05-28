@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/splash_background_gray" 
+    android:padding="16dp"
+    tools:context=".PrepareDeviceActivity">
+
+    <ImageView
+        android:id="@+id/ivBackArrowPrepareDevice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_back"
+        android:contentDescription="@string/back_button_desc"
+        android:tint="@color/splash_text_gray"
+        android:padding="8dp"/>
+
+    <TextView
+        android:id="@+id/tvPrepareDeviceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ivBackArrowPrepareDevice"
+        android:layout_marginTop="16dp"
+        android:text="Prepare another device as your camera"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="@color/splash_text_gray"/>
+
+    <TextView
+        android:id="@+id/tvSelectDeviceTypeSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvPrepareDeviceTitle"
+        android:layout_marginTop="8dp"
+        android:text="Select your device type"
+        android:textSize="16sp"
+        android:textColor="@color/splash_text_gray"/>
+
+    <!-- Mobile Device Option Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardMobileDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvSelectDeviceTypeSubtitle"
+        android:layout_marginTop="24dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white"> 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_smartphone" 
+                app:tint="@color/splash_text_gray" 
+                android:contentDescription="Mobile device icon"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Mobile Device"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/splash_text_gray"/> 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Download the app on another Android device"
+                    android:textSize="14sp"
+                    android:textColor="@color/splash_text_gray"/> 
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recommended"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:background="@drawable/recommended_tag_background" 
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/tvSetUpLater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"
+        android:text="Set up later"
+        android:textColor="@color/splash_text_gray" 
+        android:textSize="16sp"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"/>
+
+</RelativeLayout> 
