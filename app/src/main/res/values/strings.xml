@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">SmartHomeAppFinal</string>
-    <string name="title_home">Camera</string>
+    <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">More</string>
+    <string name="title_notifications">Notifications</string>
     <string name="app_logo_description">Application Logo</string>
     <string name="alfred_camera_logo_desc">Alfred Camera Logo</string>
 
@@ -99,5 +99,31 @@
     <!-- Strings for Navigation Drawer -->
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <!-- Navigation -->
+    <string name="title_devices">Devices</string>
+    <string name="title_camera">Camera</string>
+    <string name="title_settings">Settings</string>
+    
+    <!-- Device List -->
+    <string name="no_devices_found">No devices found</string>
+    <string name="last_updated">Last updated: %1$s</string>
+    <string name="device_status_on">ON</string>
+    <string name="device_status_off">OFF</string>
+    <string name="action_turn_on">Turn On</string>
+    <string name="action_turn_off">Turn Off</string>
+    <string name="action_view_stream">View Stream</string>
+    <string name="action_adjust_temperature">Adjust Temperature</string>
+    <string name="action_details">Details</string>
+    
+    <!-- Error Messages -->
+    <string name="error_loading_devices">Error loading devices</string>
+    <string name="error_controlling_device">Error controlling device</string>
+    <string name="error_no_internet">No internet connection</string>
+    <string name="error_authentication">Authentication error</string>
+    
+    <!-- Success Messages -->
+    <string name="success_device_paired">Device paired successfully</string>
+    <string name="success_device_controlled">Device controlled successfully</string>
 
 </resources>

@@ -1,48 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/userInfoSection"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#FF333333" 
-    android:padding="16dp">
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="24dp" 
+    android:paddingBottom="24dp" 
+    android:background="?attr/colorPrimaryDark"> 
 
     <ImageView
-        android:id="@+id/header_icon"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:id="@+id/ivAppLogoSmall"
+        android:layout_width="48dp" 
+        android:layout_height="48dp" 
+        android:src="@drawable/ic_launcher_adaptive_placeholder" 
         android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_marginEnd="16dp"
-        android:src="@drawable/ic_home_black_24dp" /> 
+        android:layout_marginEnd="16dp"/>
 
     <LinearLayout
-        android:id="@+id/ll_user_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_toEndOf="@id/header_icon"
-        android:layout_alignTop="@id/header_icon" 
-        android:orientation="horizontal"
-        android:gravity="center_vertical">
+        android:orientation="vertical"
+        android:layout_toEndOf="@id/ivAppLogoSmall"
+        android:layout_toStartOf="@+id/ivUserInfoDisclosure"
+        android:layout_centerVertical="true">
 
-        <TextView
-            android:id="@+id/tvHello"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Hello"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium" 
-            android:textColor="@android:color/white" />
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/tvUserName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/default_user_name"
+                android:textColor="@android:color/white" 
+                android:textSize="18sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tvNewTag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/new_tag"
+                android:textColor="@android:color/white"
+                android:textSize="10sp"
+                android:textStyle="bold"
+                android:background="@drawable/new_tag_background"
+                android:paddingStart="6dp"
+                android:paddingEnd="6dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"
+                android:layout_marginStart="8dp"
+                android:visibility="visible"/>
+        </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvUserEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/default_user_email"
+            android:textColor="@android:color/white" 
+            android:textSize="14sp" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tvUserEmailHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/ll_user_greeting"
-        android:layout_toEndOf="@id/header_icon"
-        android:layout_marginTop="4dp" 
-        android:text="dedicatoriacj7@gmail.com"
-        android:textAppearance="@style/TextAppearance.AppCompat.Small" 
-        android:textColor="@android:color/darker_gray" /> 
-
+    <ImageView
+        android:id="@+id/ivUserInfoDisclosure"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_chevron_right"
+        android:tint="@android:color/white" 
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"/>
 </RelativeLayout> 

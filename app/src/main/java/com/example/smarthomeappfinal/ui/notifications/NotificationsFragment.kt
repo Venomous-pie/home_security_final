@@ -12,9 +12,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.smarthomeappfinal.MainActivity // Import MainActivity for restart
+import com.example.smarthomeappfinal.MainActivity
 import com.example.smarthomeappfinal.R
 import com.example.smarthomeappfinal.databinding.FragmentNotificationsBinding
+import com.example.smarthomeappfinal.navigation.NavigationManager
+import com.example.smarthomeappfinal.utils.AppMode
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 
@@ -24,18 +26,18 @@ class NotificationsFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var navigationManager: NavigationManager
 
     // App Mode SharedPreferences (also used by MainActivity for spinner)
     private val APP_MODE_PREFS_NAME = "app_mode_prefs" 
     private val KEY_STARTUP_MODE = "startup_mode"
-    private val KEY_LAST_SELECTED_SPINNER_MODE = "last_selected_spinner_mode" // New key
+    private val KEY_LAST_SELECTED_SPINNER_MODE = "last_selected_spinner_mode"
     private val MODE_MONITOR = 0
     private val MODE_CAMERA = 1
 
     // Theme SharedPreferences
     private val THEME_PREFS_NAME = "theme_prefs"
     private val KEY_THEME = "selected_theme"
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -46,14 +48,14 @@ class NotificationsFragment : Fragment() {
         val root: View = binding.root
 
         firebaseAuth = FirebaseAuth.getInstance()
+        navigationManager = NavigationManager.getInstance(requireContext())
         val currentUser: FirebaseUser? = firebaseAuth.currentUser
 
         binding.tvUserEmail.text = currentUser?.email ?: getString(R.string.default_user_email)
         binding.tvUserName.text = currentUser?.displayName ?: getString(R.string.default_user_name)
 
-        loadAndApplyTheme() // For existing theme logic
-        updateCurrentThemeTextView() // For existing theme logic
-
+        loadAndApplyTheme()
+        updateCurrentThemeTextView()
         updateStartupModeButtonText()
 
         binding.userInfoSection.setOnClickListener {
@@ -93,31 +95,24 @@ class NotificationsFragment : Fragment() {
     private fun handleModeSwitchRequest() {
         val sharedPreferences = requireActivity().getSharedPreferences(APP_MODE_PREFS_NAME, Context.MODE_PRIVATE)
         val currentMode = sharedPreferences.getInt(KEY_STARTUP_MODE, MODE_MONITOR)
-        val newModeWillBeText = if (currentMode == MODE_MONITOR) "Camera" else "Monitor"
-        val newModeToSaveToPrefs = if (currentMode == MODE_MONITOR) MODE_CAMERA else MODE_MONITOR
+        val newMode = if (currentMode == MODE_MONITOR) MODE_CAMERA else MODE_MONITOR
+        val newModeAppMode = if (newMode == MODE_CAMERA) AppMode.Camera else AppMode.Monitor
 
-        AlertDialog.Builder(requireContext())
-            .setTitle("App Exit Required")
-            .setMessage("To apply the change to $newModeWillBeText mode, the app needs to quit. The new mode will be active on next launch. Continue?")
-            .setPositiveButton(android.R.string.ok) { dialog, _ ->
-                with(sharedPreferences.edit()) {
-                    putInt(KEY_STARTUP_MODE, newModeToSaveToPrefs)
-                    putInt(KEY_LAST_SELECTED_SPINNER_MODE, newModeToSaveToPrefs) // Also save for spinner consistency
-                    apply()
-                }
-                updateStartupModeButtonText() 
-
-                Toast.makeText(context, "Startup mode set to $newModeWillBeText. Please relaunch the app.", Toast.LENGTH_LONG).show()
-                activity?.finishAffinity() 
-                dialog.dismiss()
-            }
-            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
-                dialog.dismiss()
-            }
-            .show()
+        // Save the new mode
+        with(sharedPreferences.edit()) {
+            putInt(KEY_STARTUP_MODE, newMode)
+            putInt(KEY_LAST_SELECTED_SPINNER_MODE, newMode)
+            apply()
+        }
+        
+        // Update UI
+        updateStartupModeButtonText()
+        
+        // Navigate to home with new mode
+        navigationManager.navigateBasedOnMode(findNavController(), newModeAppMode)
     }
 
-    // --- Existing Theme Methods (ensure these use THEME_PREFS_NAME) ---
+    // --- Existing Theme Methods (unchanged) ---
     private fun showThemeSelectionDialog() {
         val themes = arrayOf(
             getString(R.string.theme_light),
@@ -174,7 +169,6 @@ class NotificationsFragment : Fragment() {
         }
         binding.tvCurrentTheme.text = themeText
     }
-    // --- End of Existing Theme Methods ---
 
     override fun onDestroyView() {
         super.onDestroyView()

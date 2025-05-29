@@ -1,36 +1,52 @@
 package com.example.smarthomeappfinal
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
+import android.view.MenuItem
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.Toast
 import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.smarthomeappfinal.base.BaseActivity
 import com.example.smarthomeappfinal.databinding.ActivityMainBinding
 import com.example.smarthomeappfinal.navigation.NavigationManager
-import com.example.smarthomeappfinal.utils.Constants
+import com.example.smarthomeappfinal.utils.AppMode
 import com.example.smarthomeappfinal.utils.PreferencesManager
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationView
+import androidx.core.content.ContextCompat // For loading drawable
 // Unused ViewModel imports can be removed if they are no longer needed after UI changes
 // import com.example.smarthomeappfinal.ui.home.HomeViewModel
 // import com.example.smarthomeappfinal.ui.dashboard.DashboardViewModel
 // import com.example.smarthomeappfinal.ui.notifications.NotificationsViewModel
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var binding: ActivityMainBinding
+    private var _binding: ActivityMainBinding? = null
+    private val binding get() = _binding!!
     private var actionBarSpinner: Spinner? = null
     private lateinit var navController: NavController
     private lateinit var navigationManager: NavigationManager
-    private lateinit var preferencesManager: PreferencesManager
-    private var isSpinnerProgrammaticSelection = false
+    override lateinit var preferencesManager: PreferencesManager
+    private lateinit var drawerToggle: ActionBarDrawerToggle
+    private lateinit var appBarConfiguration: AppBarConfiguration
+    
+    // State management
+    private var isSpinnerInitialized = false
+    private var savedSpinnerPosition: Int? = null
 
     // SharedPreferences keys for theme
     private val THEME_PREFS_NAME = "theme_prefs"
@@ -45,116 +61,190 @@ class MainActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
         preferencesManager = PreferencesManager(this)
-        setupToolbar()
-        setupNavigation(savedInstanceState)
+        savedInstanceState?.getInt(KEY_SPINNER_POSITION)
+        setupComponents()
+    }
+
+    private fun setupComponents() {
+        setupToolbarAndNavigationClickListener()
+        setupDrawer()
+        setupNavigation()
         setupSpinner()
         setupBottomNavigation()
     }
 
-    private fun setupToolbar() {
+    private fun setupToolbarAndNavigationClickListener() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
+        binding.toolbar.setNavigationOnClickListener { 
+            Log.d("DEBUG_NAV", "Toolbar Navigation Icon Clicked!")
+            val currentDestId = navController.currentDestination?.id
+            if (currentDestId == R.id.navigation_camera_capture) {
+                if (binding.drawerLayout.getDrawerLockMode(GravityCompat.START) == DrawerLayout.LOCK_MODE_UNLOCKED) {
+                    if (!binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        binding.drawerLayout.openDrawer(GravityCompat.START)
+                        Log.d("DEBUG_NAV", "Toolbar click: Opened drawer on camera page")
+                    } else {
+                        binding.drawerLayout.closeDrawer(GravityCompat.START)
+                        Log.d("DEBUG_NAV", "Toolbar click: Closed drawer on camera page")
+                    }
+                } else {
+                    Log.d("DEBUG_NAV", "Toolbar click: Drawer locked on camera page.")
+                }
+            } else {
+                Log.d("DEBUG_NAV", "Toolbar click: Not camera page, calling onSupportNavigateUp()")
+                onSupportNavigateUp() 
+            }
+        }
     }
 
-    private fun setupNavigation(savedInstanceState: Bundle?) {
+    private fun setupDrawer() {
+        drawerToggle = ActionBarDrawerToggle(
+            this,
+            binding.drawerLayout,
+            binding.toolbar,
+            R.string.navigation_drawer_open,
+            R.string.navigation_drawer_close
+        )
+        binding.drawerLayout.addDrawerListener(drawerToggle)
+        drawerToggle.isDrawerIndicatorEnabled = false
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+        binding.cameraDrawer.setNavigationItemSelectedListener(this)
+    }
+
+    private fun setupNavigation() {
         val navHostFragment = supportFragmentManager
-            .findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+            .findFragmentById(R.id.nav_host_fragment_activity_main) as? NavHostFragment
+            ?: throw IllegalStateException("NavHostFragment not found")
         navController = navHostFragment.navController
-        navigationManager = NavigationManager(this, navController)
+        navigationManager = NavigationManager.getInstance(this)
 
-        if (savedInstanceState == null) {
-            val graphInflater = navController.navInflater
-            val navGraph = graphInflater.inflate(R.navigation.mobile_navigation)
-            
-            val startDestination = if (preferencesManager.getStartupMode() == Constants.MODE_CAMERA) {
-                R.id.navigation_camera_capture
-            } else {
-                R.id.navigation_home
-            }
-            navGraph.setStartDestination(startDestination)
-            navController.graph = navGraph
+        val startDestination = if (preferencesManager.getStartupMode() == AppMode.Camera) {
+            R.id.navigation_camera_capture
+        } else {
+            R.id.navigation_home
         }
+        val navGraph = navController.navInflater.inflate(R.navigation.mobile_navigation).apply {
+            setStartDestination(startDestination)
+        }
+        navController.graph = navGraph
 
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.navigation_home, R.id.navigation_notifications)
+        appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_home, 
+                R.id.navigation_notifications,
+                R.id.navigation_camera_capture 
+            ),
+            binding.drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
     }
 
     private fun setupSpinner() {
-        actionBarSpinner = Spinner(this, Spinner.MODE_DROPDOWN)
+        actionBarSpinner = Spinner(this).apply { id = View.generateViewId() }
         val adapter = ArrayAdapter.createFromResource(
-            this,
-            R.array.viewer_options_array,
-            R.layout.action_bar_spinner_item
-        )
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            this, R.array.viewer_options_array, R.layout.action_bar_spinner_item
+        ).apply { setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item) }
         actionBarSpinner?.adapter = adapter
-
-        isSpinnerProgrammaticSelection = true
-        actionBarSpinner?.setSelection(preferencesManager.getLastSelectedSpinnerMode(), false)
-        isSpinnerProgrammaticSelection = false
-
+        val position = savedSpinnerPosition ?: preferencesManager.getLastSelectedMode().value
+        actionBarSpinner?.setSelection(position, false)
         actionBarSpinner?.onItemSelectedListener = createSpinnerListener()
         setupSpinnerInActionBar()
+        isSpinnerInitialized = true
     }
 
     private fun createSpinnerListener() = object : AdapterView.OnItemSelectedListener {
         override fun onItemSelected(parent: AdapterView<*>, view: View?, position: Int, id: Long) {
-            if (isSpinnerProgrammaticSelection) {
-                isSpinnerProgrammaticSelection = false
-                return
-            }
-            
-            preferencesManager.saveSpinnerMode(position)
-            navigationManager.navigateBasedOnMode(position)
+            if (!isSpinnerInitialized) return
+            val mode = AppMode.fromInt(position)
+            preferencesManager.saveAppMode(mode)
+            navigationManager.navigateBasedOnMode(navController, mode)
         }
-
         override fun onNothingSelected(parent: AdapterView<*>) {}
     }
 
     private fun setupSpinnerInActionBar() {
         val params = ActionBar.LayoutParams(
-            ActionBar.LayoutParams.WRAP_CONTENT,
-            ActionBar.LayoutParams.MATCH_PARENT,
-            Gravity.START
-        )
-        supportActionBar?.setCustomView(actionBarSpinner, params)
-        supportActionBar?.setDisplayShowCustomEnabled(true)
+            ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.MATCH_PARENT, Gravity.START)
+        supportActionBar?.apply {
+            setCustomView(actionBarSpinner, params)
+            setDisplayShowCustomEnabled(true)
+        }
     }
 
     private fun setupBottomNavigation() {
-        val navView: BottomNavigationView = binding.navView
-        navView.setupWithNavController(navController)
-
-        navView.setOnNavigationItemSelectedListener { item ->
-            navigationManager.handleBottomNavigation(item.itemId)
+        binding.navView.apply {
+            setupWithNavController(navController)
+            setOnItemSelectedListener { item ->
+                navigationManager.handleBottomNavigation(navController, item.itemId)
+            }
+            setOnItemReselectedListener { item -> 
+                navigationManager.handleBottomNavReselection(navController, item.itemId)
+            }
         }
-
-        navView.setOnNavigationItemReselectedListener { item ->
-            navigationManager.handleBottomNavReselection(item.itemId)
-        }
-
         setupNavigationListener()
     }
 
     private fun setupNavigationListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            when (destination.id) {
-                R.id.navigation_camera_capture -> {
-                    configureAppBarForSpinner(false)
-                    binding.navView.visibility = View.GONE
+            // Default states for most screens
+            binding.toolbar.visibility = View.VISIBLE
+            binding.navView.visibility = View.VISIBLE
+            binding.cameraDrawer.visibility = View.GONE
+            binding.navigationView.visibility = View.VISIBLE // Assuming navigationView is the main drawer content
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+            drawerToggle.isDrawerIndicatorEnabled = appBarConfiguration.topLevelDestinations.contains(destination.id) // Burger for top-level, back for others
+
+            supportActionBar?.setDisplayHomeAsUpEnabled(true) // Show icon (burger or back)
+
+            // Specific adjustments for camera screen
+            if (destination.id == R.id.navigation_camera_capture) {
+                binding.navView.visibility = View.GONE
+                binding.cameraDrawer.visibility = View.VISIBLE
+                binding.navigationView.visibility = View.GONE // Hide main drawer content
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) // Unlock for camera
+                drawerToggle.isDrawerIndicatorEnabled = true // Ensure burger icon for camera drawer
+                // Optionally, set a specific burger icon if needed:
+                // supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu) 
+            } else {
+                // Ensure the correct drawer content (main) is visible if not camera
+                binding.navigationView.visibility = View.VISIBLE
+                binding.cameraDrawer.visibility = View.GONE
+                // Standard behavior for other screens (burger if top-level, else back arrow)
+                // This is mostly handled by setupActionBarWithNavController and appBarConfiguration
+                // but isDrawerIndicatorEnabled helps reinforce it for the toggle.
+                if (appBarConfiguration.topLevelDestinations.contains(destination.id)) {
+                    binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED) // Allow drawer for top-level destinations
+                    drawerToggle.isDrawerIndicatorEnabled = true
+                } else {
+                    binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+                    drawerToggle.isDrawerIndicatorEnabled = false
                 }
-                else -> {
-                    configureAppBarForSpinner(true)
-                    configureAppBarForTitle(false, null)
-                    binding.navView.visibility = View.VISIBLE
-                }
+            }
+
+            // Adjust toolbar home indicator based on whether it's a drawer or up action
+            if (drawerToggle.isDrawerIndicatorEnabled) {
+                 supportActionBar?.setHomeAsUpIndicator(null) // Use drawer toggle's icon
+            } else {
+                // For non-drawer (up) actions, NavController usually sets this,
+                // but we can ensure it's not the drawer toggle's icon.
+                // Or, rely on setupActionBarWithNavController to set the up arrow.
+            }
+
+            // Handle visibility of spinner
+            val currentFragment = navHostFragment?.childFragmentManager?.primaryNavigationFragment
+            if (currentFragment is CameraCaptureFragment || currentFragment is MonitorFragment) {
+                supportActionBar?.setDisplayShowCustomEnabled(false)
+                actionBarSpinner?.visibility = View.GONE
+                Log.d("SPINNER_VIS", "Spinner hidden for Camera/Monitor Fragment")
+            } else {
+                supportActionBar?.setDisplayShowCustomEnabled(true)
+                actionBarSpinner?.visibility = View.VISIBLE
+                Log.d("SPINNER_VIS", "Spinner shown for other fragments")
             }
         }
     }
@@ -169,16 +259,112 @@ class MainActivity : BaseActivity() {
         supportActionBar?.title = if (showTitle) title else null
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        Log.d("DEBUG_NAV", "onOptionsItemSelected: ${item.itemId}, android.R.id.home: ${android.R.id.home}")
+        return super.onOptionsItemSelected(item)
+    }
+
     override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp() || super.onSupportNavigateUp()
+        val currentDestId = navController.currentDestination?.id
+        // If on camera page, and drawer is open, close it. Otherwise, let NavController handle "Up".
+        if (currentDestId == R.id.navigation_camera_capture && binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            return true
+        }
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
-    private fun loadAndApplyTheme() {
-        val prefs = getSharedPreferences(THEME_PREFS_NAME, Context.MODE_PRIVATE)
-        val theme = prefs.getInt(KEY_THEME, AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
-        AppCompatDelegate.setDefaultNightMode(theme)
+    override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            super.onBackPressed()
+        }
     }
 
-    // Removed onCreateOptionsMenu and onOptionsItemSelected as they are not directly relevant to spinner/drawer issue
-    // and spinner item selection is handled directly.
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        Log.d("NAV_ITEM_SELECTED", "Item selected: ${item.title}")
+        var handled = false
+        val currentDestId = navController.currentDestination?.id
+
+        if (currentDestId == R.id.navigation_camera_capture) {
+            // Handle camera_drawer items
+            when (item.itemId) {
+                R.id.nav_camera_settings -> {
+                    showToast("Camera Settings clicked")
+                    handled = true
+                }
+                R.id.nav_manage_recordings -> {
+                    showToast("Manage Recordings clicked")
+                    handled = true
+                }
+                // Add other camera_drawer items here
+            }
+        } else {
+            // Handle main navigationView items (existing logic or new)
+            when (item.itemId) {
+                R.id.nav_settings -> {
+                    navController.navigate(R.id.navigation_settings)
+                    handled = true
+                }
+                R.id.nav_logout -> {
+                    // Implement logout
+                    showToast("Logout clicked")
+                    handled = true
+                }
+                 R.id.nav_home -> {
+                    navController.navigate(R.id.navigation_home)
+                    handled = true
+                }
+                R.id.nav_dashboard -> { // Example if you have dashboard in drawer
+                    navController.navigate(R.id.navigation_dashboard)
+                    handled = true
+                }
+                R.id.nav_notifications_drawer -> { // Assuming you have a notifications item in the drawer
+                    navController.navigate(R.id.navigation_notifications)
+                    handled = true
+                }
+            }
+        }
+
+        if (handled) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+        } else {
+            // Fallback for items not explicitly handled, or let default behavior if part of NavController setup
+            // For example, if items are directly tied to navigation destinations via menu XML and NavController
+            // handled = NavigationUI.onNavDestinationSelected(item, navController) || super.onOptionsItemSelected(item)
+            showToast("Unhandled navigation item: ${item.title}")
+        }
+        return handled // Return true if the item selection was handled
+    }
+
+    // To ensure the drawer toggle syncs its state (e.g., burger or back arrow)
+    override fun onPostCreate(savedInstanceState: Bundle?) {
+        super.onPostCreate(savedInstanceState)
+        drawerToggle.syncState()
+    }
+
+    // Make sure to remove or adjust the custom toolbar navigation click listener
+    // if drawerToggle.isDrawerIndicatorEnabled = true is correctly managed by onDestinationChangedListener
+    // The setupToolbarAndNavigationClickListener might need simplification or removal
+    // if the ActionBarDrawerToggle handles all cases correctly with the updated logic.
+    // For now, I'll leave setupToolbarAndNavigationClickListener as is, as the camera page
+    // has specific logic within it that might still be needed if not fully covered by drawerToggle.
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        actionBarSpinner?.selectedItemPosition?.let { position ->
+            outState.putInt(KEY_SPINNER_POSITION, position)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        actionBarSpinner = null
+        _binding = null
+    }
+
+    companion object {
+        private const val KEY_SPINNER_POSITION = "spinner_position"
+    }
 }
