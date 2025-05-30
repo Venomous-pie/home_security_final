@@ -127,4 +127,15 @@
     <string name="success_device_paired">Device paired successfully</string>
     <string name="success_device_controlled">Device controlled successfully</string>
 
+    <!-- Camera Module -->
+    <string name="toggle_fullscreen">Toggle fullscreen</string>
+    <string name="retry">Retry</string>
+    <string name="poor_connection">Poor Connection</string>
+    <string name="camera_permission_denied">Camera permission is required to use this feature. Please grant the permission in Settings.</string>
+    <string name="camera_permission_rationale">Camera permission is required to use the camera features.</string>
+    <string name="grant_permission">Grant Permission</string>
+    <string name="fullscreen_not_supported">Full-screen mode is not supported on this device</string>
+    <string name="reconnecting">Reconnecting…</string>
+    <string name="connection_failed">Connection failed. Please check your network and try again.</string>
+
 </resources>
