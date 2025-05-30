@@ -62,11 +62,29 @@ class NavigationManager private constructor(context: Context) {
     }
 
     fun handleBottomNavigation(navController: NavController, itemId: Int): Boolean {
-        val currentMode = preferencesManager.getLastSelectedMode()
-
         return when (itemId) {
             R.id.navigation_home -> {
-                navigateBasedOnMode(navController, currentMode)
+                if (navController.currentDestination?.id != R.id.navigation_home) {
+                    navController.navigate(R.id.navigation_home)
+                }
+                true
+            }
+            R.id.navigation_dashboard -> {
+                if (navController.currentDestination?.id != R.id.navigation_dashboard) {
+                    navController.navigate(R.id.navigation_dashboard)
+                }
+                true
+            }
+            R.id.navigation_camera_capture -> {
+                if (navController.currentDestination?.id != R.id.navigation_camera_capture) {
+                    navController.navigate(R.id.navigation_camera_capture)
+                }
+                true
+            }
+            R.id.navigation_monitor -> {
+                if (navController.currentDestination?.id != R.id.navigation_monitor) {
+                    navController.navigate(R.id.navigation_monitor)
+                }
                 true
             }
             R.id.navigation_notifications -> {
@@ -80,10 +98,7 @@ class NavigationManager private constructor(context: Context) {
     }
 
     fun handleBottomNavReselection(navController: NavController, itemId: Int) {
-        if (itemId == R.id.navigation_home) {
-            val currentMode = preferencesManager.getLastSelectedMode()
-            navigateBasedOnMode(navController, currentMode)
-        }
+        // No special handling needed for reselection in the simplified navigation
     }
 
     companion object {

@@ -24,6 +24,18 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/navigation_dashboard"
+        android:name="com.example.smarthomeappfinal.ui.dashboard.DashboardFragment"
+        android:label="@string/title_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/navigation_monitor"
+        android:name="com.example.smarthomeappfinal.ui.monitor.MonitorFragment"
+        android:label="@string/title_monitor"
+        tools:layout="@layout/fragment_monitor" />
+
+    <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.example.smarthomeappfinal.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"

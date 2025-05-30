@@ -16,6 +16,10 @@
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Camera Settings" />
     <item
+        android:id="@+id/nav_manage_recordings"
+        android:icon="@android:drawable/ic_menu_recent_history"
+        android:title="Manage Recordings" />
+    <item
         android:id="@+id/nav_camera_health"
         android:icon="@android:drawable/ic_menu_sort_by_size"
         android:title="Camera Health" />
