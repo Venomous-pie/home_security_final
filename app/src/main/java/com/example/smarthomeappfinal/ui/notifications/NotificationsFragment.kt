@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.smarthomeappfinal.LoginActivity
 import com.example.smarthomeappfinal.MainActivity
 import com.example.smarthomeappfinal.R
 import com.example.smarthomeappfinal.databinding.FragmentNotificationsBinding
@@ -56,18 +57,18 @@ class NotificationsFragment : Fragment() {
 
         loadAndApplyTheme()
         updateCurrentThemeTextView()
-        updateStartupModeButtonText()
+        setupClickListeners()
 
+        return root
+    }
+
+    private fun setupClickListeners() {
         binding.userInfoSection.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_notifications_to_navigation_account)
         }
 
         binding.itemDeviceManagement.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_notifications_to_device_management)
-        }
-
-        binding.itemSwitchToCamera.setOnClickListener {
-            handleModeSwitchRequest()
         }
 
         binding.itemViewerName.setOnClickListener {
@@ -79,37 +80,32 @@ class NotificationsFragment : Fragment() {
             showThemeSelectionDialog()
         }
 
-        return root
-    }
-
-    private fun updateStartupModeButtonText() {
-        val sharedPreferences = requireActivity().getSharedPreferences(APP_MODE_PREFS_NAME, Context.MODE_PRIVATE)
-        val currentMode = sharedPreferences.getInt(KEY_STARTUP_MODE, MODE_MONITOR)
-        if (currentMode == MODE_CAMERA) {
-            binding.tvSwitchModeLabel.text = getString(R.string.switch_to_monitor_mode_label)
-        } else {
-            binding.tvSwitchModeLabel.text = getString(R.string.switch_to_camera_mode_label)
+        binding.btnLogout.setOnClickListener {
+            showLogoutConfirmationDialog()
         }
     }
 
-    private fun handleModeSwitchRequest() {
-        val sharedPreferences = requireActivity().getSharedPreferences(APP_MODE_PREFS_NAME, Context.MODE_PRIVATE)
-        val currentMode = sharedPreferences.getInt(KEY_STARTUP_MODE, MODE_MONITOR)
-        val newMode = if (currentMode == MODE_MONITOR) MODE_CAMERA else MODE_MONITOR
-        val newModeAppMode = if (newMode == MODE_CAMERA) AppMode.Camera else AppMode.Monitor
+    private fun showLogoutConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.confirm_logout_title))
+            .setMessage(getString(R.string.confirm_logout_message))
+            .setPositiveButton(getString(R.string.yes_action)) { dialog, _ ->
+                performLogout()
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.no_action)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
 
-        // Save the new mode
-        with(sharedPreferences.edit()) {
-            putInt(KEY_STARTUP_MODE, newMode)
-            putInt(KEY_LAST_SELECTED_SPINNER_MODE, newMode)
-            apply()
-        }
-        
-        // Update UI
-        updateStartupModeButtonText()
-        
-        // Navigate to home with new mode
-        navigationManager.navigateBasedOnMode(findNavController(), newModeAppMode)
+    private fun performLogout() {
+        firebaseAuth.signOut()
+        // Navigate to login screen
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        activity?.finish()
     }
 
     // --- Existing Theme Methods (unchanged) ---
@@ -135,8 +131,14 @@ class NotificationsFragment : Fragment() {
             .setSingleChoiceItems(themes, checkedItem) { dialog, which ->
                 val selectedMode = modes[which]
                 saveThemePreference(selectedMode)
-                AppCompatDelegate.setDefaultNightMode(selectedMode)
-                updateCurrentThemeTextView()
+
+                // Recreate MainActivity with a flag to return to NotificationsFragment
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.putExtra("navigate_to_settings", true)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                requireActivity().finish()
+
                 dialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->

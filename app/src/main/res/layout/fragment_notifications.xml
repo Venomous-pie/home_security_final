@@ -127,22 +127,6 @@
             android:text="@string/settings_header" />
 
         <RelativeLayout 
-            android:id="@+id/itemSwitchToCamera"
-            style="@style/MoreScreenItemContainer">
-            <ImageView
-                android:id="@+id/ivSwitchToCameraIcon"
-                style="@style/MoreScreenItemIcon"
-                android:src="@drawable/ic_cameraswitch"
-                android:tint="@color/splash_text_gray"/>
-            <TextView
-                android:id="@+id/tvSwitchModeLabel" 
-                style="@style/MoreScreenItemText"
-                android:layout_toEndOf="@id/ivSwitchToCameraIcon"
-                android:text="@string/switch_to_camera_label" />
-            <ImageView style="@style/MoreScreenItemDisclosure" />
-        </RelativeLayout>
-
-        <RelativeLayout 
             android:id="@+id/itemViewerName"
             style="@style/MoreScreenItemContainer">
             <ImageView
@@ -180,6 +164,27 @@
                 android:textColor="?android:attr/textColorSecondary" 
                 tools:text="System Default" /> 
         </RelativeLayout>
+
+        <!-- Add a divider before logout section -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/divider_color"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- Logout Button -->
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:text="@string/logout_button_text"
+            android:backgroundTint="?attr/colorError"
+            android:textColor="?attr/colorOnError"/>
 
     </LinearLayout>
 </ScrollView>

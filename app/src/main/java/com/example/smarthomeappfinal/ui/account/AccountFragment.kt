@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.smarthomeappfinal.LoginActivity
 import com.example.smarthomeappfinal.R
 import com.example.smarthomeappfinal.databinding.FragmentAccountBinding
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -49,9 +51,8 @@ class AccountFragment : Fragment() {
             showChangeUsernameDialog()
         }
 
-        // Set up Password item click listener (placeholder for now)
         binding.itemAccountPassword.setOnClickListener {
-            Toast.makeText(context, "Password - Create/Change clicked (Not Implemented)", Toast.LENGTH_SHORT).show()
+            showChangePasswordDialog()
         }
 
         // Set up Logout button click listener
@@ -116,6 +117,90 @@ class AccountFragment : Fragment() {
         } ?: run {
              Toast.makeText(context, "User not found. Please log in again.", Toast.LENGTH_SHORT).show()
              navigateToLoginScreen()
+        }
+    }
+
+    private fun showChangePasswordDialog() {
+        val context = requireContext()
+        val layout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(50, 20, 50, 0)
+        }
+
+        // Create EditTexts for password input
+        val currentPasswordInput = EditText(context).apply {
+            hint = getString(R.string.current_password_label)
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
+
+        val newPasswordInput = EditText(context).apply {
+            hint = getString(R.string.new_password_label)
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
+
+        val confirmNewPasswordInput = EditText(context).apply {
+            hint = getString(R.string.confirm_new_password_label)
+            inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+        }
+
+        // Add EditTexts to layout
+        layout.addView(currentPasswordInput)
+        layout.addView(newPasswordInput)
+        layout.addView(confirmNewPasswordInput)
+
+        AlertDialog.Builder(context)
+            .setTitle(getString(R.string.change_password_title))
+            .setView(layout)
+            .setPositiveButton(getString(R.string.save_action)) { dialog, _ ->
+                val currentPassword = currentPasswordInput.text.toString()
+                val newPassword = newPasswordInput.text.toString()
+                val confirmNewPassword = confirmNewPasswordInput.text.toString()
+
+                if (validatePasswordInputs(newPassword, confirmNewPassword)) {
+                    changePassword(currentPassword, newPassword)
+                }
+                dialog.dismiss()
+            }
+            .setNegativeButton(android.R.string.cancel) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun validatePasswordInputs(newPassword: String, confirmNewPassword: String): Boolean {
+        if (newPassword.length < 6) {
+            Toast.makeText(context, getString(R.string.password_too_short), Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        if (newPassword != confirmNewPassword) {
+            Toast.makeText(context, getString(R.string.passwords_dont_match), Toast.LENGTH_SHORT).show()
+            return false
+        }
+
+        return true
+    }
+
+    private fun changePassword(currentPassword: String, newPassword: String) {
+        currentUser?.let { user ->
+            // Re-authenticate user before changing password
+            val credential = EmailAuthProvider.getCredential(user.email!!, currentPassword)
+            
+            user.reauthenticate(credential)
+                .addOnSuccessListener {
+                    // Re-authentication successful, now change password
+                    user.updatePassword(newPassword)
+                        .addOnCompleteListener { task ->
+                            if (task.isSuccessful) {
+                                Toast.makeText(context, getString(R.string.password_changed_success), Toast.LENGTH_SHORT).show()
+                            } else {
+                                Toast.makeText(context, "${getString(R.string.password_change_failed)}: ${task.exception?.message}", Toast.LENGTH_LONG).show()
+                            }
+                        }
+                }
+                .addOnFailureListener {
+                    Toast.makeText(context, getString(R.string.current_password_incorrect), Toast.LENGTH_SHORT).show()
+                }
         }
     }
 
