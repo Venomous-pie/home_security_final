@@ -11,4 +11,7 @@
     <color name="splash_background_gray">#E0E0E0</color>
     <color name="splash_text_gray">#424242</color>
     <color name="divider_color">#1F000000</color>
+
+    <color name="warning_orange">#FFA500</color>
+    <color name="disabled_gray">#CCCCCC</color>
 </resources>
