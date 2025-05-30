@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.smarthomeappfinal.LoginActivity
 import com.example.smarthomeappfinal.MainActivity
 import com.example.smarthomeappfinal.R
 import com.example.smarthomeappfinal.databinding.FragmentNotificationsBinding
@@ -57,7 +58,12 @@ class NotificationsFragment : Fragment() {
         loadAndApplyTheme()
         updateCurrentThemeTextView()
         updateStartupModeButtonText()
+        setupClickListeners()
 
+        return root
+    }
+
+    private fun setupClickListeners() {
         binding.userInfoSection.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_notifications_to_navigation_account)
         }
@@ -79,7 +85,32 @@ class NotificationsFragment : Fragment() {
             showThemeSelectionDialog()
         }
 
-        return root
+        binding.btnLogout.setOnClickListener {
+            showLogoutConfirmationDialog()
+        }
+    }
+
+    private fun showLogoutConfirmationDialog() {
+        AlertDialog.Builder(requireContext())
+            .setTitle(getString(R.string.confirm_logout_title))
+            .setMessage(getString(R.string.confirm_logout_message))
+            .setPositiveButton(getString(R.string.yes_action)) { dialog, _ ->
+                performLogout()
+                dialog.dismiss()
+            }
+            .setNegativeButton(getString(R.string.no_action)) { dialog, _ ->
+                dialog.dismiss()
+            }
+            .show()
+    }
+
+    private fun performLogout() {
+        firebaseAuth.signOut()
+        // Navigate to login screen
+        val intent = Intent(requireContext(), LoginActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        activity?.finish()
     }
 
     private fun updateStartupModeButtonText() {

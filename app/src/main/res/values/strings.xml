@@ -77,7 +77,7 @@
     <string name="create_action">Create</string> <!-- For password creation/update -->
     <string name="logout_button_text">Logout</string>
     <string name="confirm_logout_title">Confirm Logout</string>
-    <string name="confirm_logout_message">Are you sure you want to log out?</string>
+    <string name="confirm_logout_message">Are you sure you want to logout?</string>
     <string name="yes_action">Yes</string>
     <string name="no_action">No</string>
 
