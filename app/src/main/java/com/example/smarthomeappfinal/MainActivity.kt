@@ -69,7 +69,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
     private fun setupComponents() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.apply {
-            setDisplayShowTitleEnabled(false)
+            setDisplayShowTitleEnabled(true)
             setDisplayHomeAsUpEnabled(true)
         }
         setupNavigation()
@@ -120,26 +120,25 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
 
     private fun setupNavigationListener() {
         navController.addOnDestinationChangedListener { _, destination, _ ->
-            // Handle bottom nav visibility
-            binding.navView.visibility = if (destination.id == R.id.navigation_camera_capture) {
-                View.GONE
-            } else {
-                View.VISIBLE
+            supportActionBar?.title = when (destination.id) {
+                R.id.navigation_home -> getString(R.string.title_home)
+                R.id.navigation_dashboard -> getString(R.string.title_dashboard)
+                R.id.navigation_notifications -> getString(R.string.title_settings)
+                R.id.navigation_camera_capture -> getString(R.string.title_camera)
+                R.id.navigation_monitor -> getString(R.string.title_monitor)
+                else -> ""
             }
-
-            // Remove spinner visibility logic since it's redundant
             actionBarSpinner?.visibility = View.GONE
         }
     }
 
     fun configureAppBarForSpinner(showSpinner: Boolean) {
-        // Always hide spinner since we're removing this feature
         actionBarSpinner?.visibility = View.GONE
         supportActionBar?.setDisplayShowCustomEnabled(false)
     }
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        return false // No longer needed since drawer is removed
+        return false
     }
 
     override fun onSupportNavigateUp(): Boolean {

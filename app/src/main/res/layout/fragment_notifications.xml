@@ -127,22 +127,6 @@
             android:text="@string/settings_header" />
 
         <RelativeLayout 
-            android:id="@+id/itemSwitchToCamera"
-            style="@style/MoreScreenItemContainer">
-            <ImageView
-                android:id="@+id/ivSwitchToCameraIcon"
-                style="@style/MoreScreenItemIcon"
-                android:src="@drawable/ic_cameraswitch"
-                android:tint="@color/splash_text_gray"/>
-            <TextView
-                android:id="@+id/tvSwitchModeLabel" 
-                style="@style/MoreScreenItemText"
-                android:layout_toEndOf="@id/ivSwitchToCameraIcon"
-                android:text="@string/switch_to_camera_label" />
-            <ImageView style="@style/MoreScreenItemDisclosure" />
-        </RelativeLayout>
-
-        <RelativeLayout 
             android:id="@+id/itemViewerName"
             style="@style/MoreScreenItemContainer">
             <ImageView

@@ -57,7 +57,6 @@ class NotificationsFragment : Fragment() {
 
         loadAndApplyTheme()
         updateCurrentThemeTextView()
-        updateStartupModeButtonText()
         setupClickListeners()
 
         return root
@@ -70,10 +69,6 @@ class NotificationsFragment : Fragment() {
 
         binding.itemDeviceManagement.setOnClickListener {
             findNavController().navigate(R.id.action_navigation_notifications_to_device_management)
-        }
-
-        binding.itemSwitchToCamera.setOnClickListener {
-            handleModeSwitchRequest()
         }
 
         binding.itemViewerName.setOnClickListener {
@@ -111,36 +106,6 @@ class NotificationsFragment : Fragment() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         activity?.finish()
-    }
-
-    private fun updateStartupModeButtonText() {
-        val sharedPreferences = requireActivity().getSharedPreferences(APP_MODE_PREFS_NAME, Context.MODE_PRIVATE)
-        val currentMode = sharedPreferences.getInt(KEY_STARTUP_MODE, MODE_MONITOR)
-        if (currentMode == MODE_CAMERA) {
-            binding.tvSwitchModeLabel.text = getString(R.string.switch_to_monitor_mode_label)
-        } else {
-            binding.tvSwitchModeLabel.text = getString(R.string.switch_to_camera_mode_label)
-        }
-    }
-
-    private fun handleModeSwitchRequest() {
-        val sharedPreferences = requireActivity().getSharedPreferences(APP_MODE_PREFS_NAME, Context.MODE_PRIVATE)
-        val currentMode = sharedPreferences.getInt(KEY_STARTUP_MODE, MODE_MONITOR)
-        val newMode = if (currentMode == MODE_MONITOR) MODE_CAMERA else MODE_MONITOR
-        val newModeAppMode = if (newMode == MODE_CAMERA) AppMode.Camera else AppMode.Monitor
-
-        // Save the new mode
-        with(sharedPreferences.edit()) {
-            putInt(KEY_STARTUP_MODE, newMode)
-            putInt(KEY_LAST_SELECTED_SPINNER_MODE, newMode)
-            apply()
-        }
-        
-        // Update UI
-        updateStartupModeButtonText()
-        
-        // Navigate to home with new mode
-        navigationManager.navigateBasedOnMode(findNavController(), newModeAppMode)
     }
 
     // --- Existing Theme Methods (unchanged) ---
