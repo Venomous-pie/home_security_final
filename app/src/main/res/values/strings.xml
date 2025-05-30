@@ -168,4 +168,8 @@
     <string name="error_network">Network error. Please check your connection.</string>
     <string name="scanning_in_progress">Scanning…</string>
     <string name="connecting_in_progress">Connecting to device…</string>
+
+    <string name="no_cameras_icon_description">No cameras icon</string>
+    <string name="no_cameras_message">You don\'t have any cameras yet.</string>
+    <string name="add_camera_button">+ Add a Camera</string>
 </resources>

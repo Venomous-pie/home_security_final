@@ -4,7 +4,7 @@ import retrofit2.http.*
 
 interface SmartHomeApiService {
     companion object {
-        const val BASE_URL = "https://api.smarthome.com/" // Replace with your actual API base URL
+        const val BASE_URL = "https://smarthomesecurity-f3859.web.app/api/" // Firebase Hosting URL for your backend
     }
 
     @GET("devices")

@@ -93,6 +93,11 @@
             app:destination="@id/navigation_monitor"
             app:popUpTo="@id/navigation_device_management"
             app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_scan_qr_to_camera"
+            app:destination="@id/navigation_camera_capture"
+            app:popUpTo="@id/navigation_device_management"
+            app:popUpToInclusive="true" />
     </fragment>
 
     <fragment

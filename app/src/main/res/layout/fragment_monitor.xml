@@ -1,43 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:padding="16dp">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewDevices"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            tools:listitem="@layout/item_device" />
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/emptyStateGroup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="visible"
+        app:constraint_referenced_ids="ivNoCamerasIcon,tvNoCamerasMessage,btnAddCamera" />
 
     <ImageView
         android:id="@+id/ivNoCamerasIcon"
         android:layout_width="120dp"
         android:layout_height="120dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/ic_camera_placeholder" 
-        android:contentDescription="No cameras icon"
+        android:contentDescription="@string/no_cameras_icon_description"
+        android:src="@drawable/ic_camera_placeholder"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4"
         app:tint="#CCCCCC" />
 
     <TextView
         android:id="@+id/tvNoCamerasMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivNoCamerasIcon"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="You don\'t have any cameras yet."
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+        android:text="@string/no_cameras_message"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ivNoCamerasIcon" />
 
     <Button
         android:id="@+id/btnAddCamera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvNoCamerasMessage"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="24dp"
-        android:text="+ Add a Camera"
-        android:backgroundTint="@color/splash_text_gray" 
-        android:textColor="@color/white"
+        android:backgroundTint="@color/splash_text_gray"
         android:paddingStart="32dp"
         android:paddingEnd="32dp"
-        app:cornerRadius="20dp"/>
+        android:text="@string/add_camera_button"
+        android:textColor="@color/white"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvNoCamerasMessage" />
 
-</RelativeLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout> 

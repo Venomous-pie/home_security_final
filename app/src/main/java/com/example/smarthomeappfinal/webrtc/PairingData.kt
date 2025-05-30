@@ -17,7 +17,8 @@ data class PairingData(
     val deviceId: String,
     val securityToken: String,
     val serverUrl: String,
-    val roomId: String? = null
+    val roomId: String? = null,
+    val pairCode: String = ""
 ) : Parcelable {
     companion object {
         private val gson = Gson()

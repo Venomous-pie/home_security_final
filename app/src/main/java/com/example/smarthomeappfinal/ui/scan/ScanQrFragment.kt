@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,6 +22,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.example.smarthomeappfinal.R
 import com.example.smarthomeappfinal.databinding.FragmentScanQrBinding
+import com.example.smarthomeappfinal.utils.Constants
 import com.google.android.material.snackbar.Snackbar
 import com.google.mlkit.vision.barcode.BarcodeScanner
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
@@ -30,6 +32,8 @@ import com.google.mlkit.vision.common.InputImage
 import kotlinx.coroutines.launch
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+
+private const val TAG = "ScanQrFragment"
 
 @OptIn(ExperimentalGetImage::class)
 class ScanQrFragment : Fragment() {
@@ -64,6 +68,9 @@ class ScanQrFragment : Fragment() {
         setupCameraExecutor()
         observeUiState()
         setupClickListeners()
+
+        // Initialize ViewModel with context
+        viewModel.initialize(requireContext())
 
         // Request camera permission
         requestPermissionLauncher.launch(Manifest.permission.CAMERA)
@@ -104,7 +111,14 @@ class ScanQrFragment : Fragment() {
             }
             is ScanUiState.Success -> {
                 binding.progressBar.visibility = View.VISIBLE
-                findNavController().navigate(R.id.navigation_monitor)
+                when (state.appMode) {
+                    Constants.AppMode.MODE_MONITOR -> {
+                        findNavController().navigate(R.id.navigation_monitor)
+                    }
+                    Constants.AppMode.MODE_CAMERA -> {
+                        findNavController().navigate(R.id.navigation_camera_capture)
+                    }
+                }
             }
             is ScanUiState.Error -> {
                 handleError(state.error)
@@ -147,9 +161,16 @@ class ScanQrFragment : Fragment() {
 
             imageAnalysis = ImageAnalysis.Builder()
                 .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
+                .setTargetResolution(android.util.Size(1280, 720))
                 .build()
                 .also { analysis ->
+                    var isScanning = true  // Flag to control scanning
                     analysis.setAnalyzer(cameraExecutor) { imageProxy ->
+                        if (!isScanning) {
+                            imageProxy.close()
+                            return@setAnalyzer
+                        }
+
                         @androidx.camera.core.ExperimentalGetImage
                         val mediaImage = imageProxy.image
                         if (mediaImage != null) {
@@ -162,11 +183,14 @@ class ScanQrFragment : Fragment() {
                                 .addOnSuccessListener { barcodes ->
                                     if (barcodes.isNotEmpty()) {
                                         barcodes[0].rawValue?.let { content ->
+                                            Log.d(TAG, "QR Code detected: $content")
+                                            isScanning = false  // Pause scanning after detection
                                             viewModel.onQrCodeDetected(content)
                                         }
                                     }
                                 }
-                                .addOnFailureListener {
+                                .addOnFailureListener { e ->
+                                    Log.e(TAG, "Barcode scan failed", e)
                                     handleError(ScanError.InvalidQr)
                                 }
                                 .addOnCompleteListener {
@@ -180,13 +204,20 @@ class ScanQrFragment : Fragment() {
 
             val cameraSelector = CameraSelector.DEFAULT_BACK_CAMERA
 
-            cameraProvider.bindToLifecycle(
-                viewLifecycleOwner,
-                cameraSelector,
-                preview,
-                imageAnalysis
-            )
+            try {
+                cameraProvider.bindToLifecycle(
+                    viewLifecycleOwner,
+                    cameraSelector,
+                    preview,
+                    imageAnalysis
+                )
+                Log.d(TAG, "Camera use cases bound successfully")
+            } catch (e: Exception) {
+                Log.e(TAG, "Failed to bind camera use cases", e)
+                handleError(ScanError.NetworkFailure)
+            }
         } catch (e: Exception) {
+            Log.e(TAG, "Camera setup failed", e)
             handleError(ScanError.NetworkFailure)
         }
     }
