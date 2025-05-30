@@ -1,5 +1,0 @@
-1. i want you to look back at the changes that you made before proceeding.
-2. when creating a new thing, make sure to look in the codebase for existing ones.
-3. when editing, search for references.
-4. when you try to add something, make sure it has reference if its necessary.
-5. before making any changes, let me confirm your plans first.
