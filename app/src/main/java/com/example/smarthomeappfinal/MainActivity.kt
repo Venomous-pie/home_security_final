@@ -103,7 +103,13 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        val shouldGoToSettings = intent.getBooleanExtra("navigate_to_settings", false)
+        if (shouldGoToSettings) {
+            navController.navigate(R.id.navigation_notifications)
+        }
     }
+
 
     private fun setupBottomNavigation() {
         binding.navView.apply {

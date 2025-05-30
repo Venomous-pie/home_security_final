@@ -131,8 +131,14 @@ class NotificationsFragment : Fragment() {
             .setSingleChoiceItems(themes, checkedItem) { dialog, which ->
                 val selectedMode = modes[which]
                 saveThemePreference(selectedMode)
-                AppCompatDelegate.setDefaultNightMode(selectedMode)
-                updateCurrentThemeTextView()
+
+                // Recreate MainActivity with a flag to return to NotificationsFragment
+                val intent = Intent(requireContext(), MainActivity::class.java)
+                intent.putExtra("navigate_to_settings", true)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                requireActivity().finish()
+
                 dialog.dismiss()
             }
             .setNegativeButton(android.R.string.cancel) { dialog, _ ->
