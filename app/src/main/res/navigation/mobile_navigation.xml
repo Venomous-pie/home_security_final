@@ -71,8 +71,8 @@
 
     <fragment
         android:id="@+id/navigation_camera_capture"
-        android:name="com.example.smarthomeappfinal.ui.camera.CameraCaptureFragment"
-        android:label="Camera"
-        tools:layout="@layout/fragment_camera_capture" />
+        android:name="com.example.smarthomeappfinal.camera.CameraPreviewFragment"
+        android:label="Camera Preview"
+        tools:layout="@layout/fragment_camera_preview" />
 
 </navigation>
