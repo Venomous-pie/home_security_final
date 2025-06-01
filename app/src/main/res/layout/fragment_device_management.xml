@@ -1,32 +1,126 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface"
-    tools:context=".ui.devicemanagement.DeviceManagementFragment">
+    android:background="?attr/colorSurface">
 
-    <TextView
-        android:id="@+id/text_device_management_placeholder"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/device_management_placeholder_text"
-        android:textSize="20sp"
-        android:textColor="?attr/colorOnSurface"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fab_scan_qr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="@string/scan_qr_title"
-        app:icon="@drawable/ic_qr_code_scanner"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+            <!-- Camera Devices Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camera Devices"
+                android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCameraDevices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:padding="8dp"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_device" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Viewer Devices Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Viewer Devices"
+                android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvViewerDevices"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    android:padding="8dp"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_device" />
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Device Management Actions -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Device Actions"
+                android:textAppearance="?attr/textAppearanceSubtitle1" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="8dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+
+                    <!-- Add Camera Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnAddCamera"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Add Camera"
+                        app:icon="@drawable/ic_camera_black_24dp" />
+
+                    <!-- Pair Viewer Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnPairViewer"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Pair Viewer"
+                        app:icon="@drawable/ic_monitor_black_24dp" />
+
+                    <!-- Scan QR Code Button -->
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnScanQr"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:text="Scan QR Code"
+                        app:icon="@drawable/ic_qr_code_scanner" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

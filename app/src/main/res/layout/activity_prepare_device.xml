@@ -18,12 +18,12 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/tvPrepareDeviceTitle"
+        android:id="@+id/tvTitlePrepareDevice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ivBackArrowPrepareDevice"
         android:layout_marginTop="16dp"
-        android:text="Prepare another device as your camera"
+        android:text="Add a Camera"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/splash_text_gray"/>
@@ -32,22 +32,22 @@
         android:id="@+id/tvSelectDeviceTypeSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvPrepareDeviceTitle"
+        android:layout_below="@id/tvTitlePrepareDevice"
         android:layout_marginTop="8dp"
-        android:text="Select your device type"
+        android:text="Select your camera type"
         android:textSize="16sp"
         android:textColor="@color/splash_text_gray"/>
 
-    <!-- Mobile Device Option Card -->
+    <!-- WiFi Camera Option -->
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/cardMobileDevice"
+        android:id="@+id/cardWifiCamera"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/tvSelectDeviceTypeSubtitle"
         android:layout_marginTop="24dp"
         app:cardCornerRadius="8dp"
         app:cardElevation="4dp"
-        app:cardBackgroundColor="@color/white"> 
+        app:cardBackgroundColor="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -59,8 +59,70 @@
             <ImageView
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_smartphone" 
-                app:tint="@color/splash_text_gray" 
+                android:src="@drawable/ic_camera_black_24dp"
+                app:tint="@color/splash_text_gray"
+                android:contentDescription="WiFi camera icon"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginStart="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="WiFi Camera"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/splash_text_gray"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Connect a WiFi-enabled security camera"
+                    android:textSize="14sp"
+                    android:textColor="@color/splash_text_gray"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Best Quality"
+                android:textSize="12sp"
+                android:textColor="@color/white"
+                android:background="@drawable/recommended_tag_background"
+                android:paddingStart="8dp"
+                android:paddingEnd="8dp"
+                android:paddingTop="2dp"
+                android:paddingBottom="2dp"/>
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Mobile Device Option -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardMobileDevice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/cardWifiCamera"
+        android:layout_marginTop="16dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        app:cardBackgroundColor="@color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="16dp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/ic_smartphone"
+                app:tint="@color/splash_text_gray"
                 android:contentDescription="Mobile device icon"/>
 
             <LinearLayout
@@ -76,23 +138,23 @@
                     android:text="Mobile Device"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:textColor="@color/splash_text_gray"/> 
+                    android:textColor="@color/splash_text_gray"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Download the app on another Android device"
+                    android:text="Use another phone or tablet as a camera"
                     android:textSize="14sp"
-                    android:textColor="@color/splash_text_gray"/> 
+                    android:textColor="@color/splash_text_gray"/>
             </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Recommended"
+                android:text="Easy Setup"
                 android:textSize="12sp"
                 android:textColor="@color/white"
-                android:background="@drawable/recommended_tag_background" 
+                android:background="@drawable/recommended_tag_background"
                 android:paddingStart="8dp"
                 android:paddingEnd="8dp"
                 android:paddingTop="2dp"
@@ -106,12 +168,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
+        android:padding="16dp"
         android:text="Set up later"
-        android:textColor="@color/splash_text_gray" 
-        android:textSize="16sp"
-        android:padding="8dp"
-        android:clickable="true"
-        android:focusable="true"/>
+        android:textColor="@color/splash_text_gray"
+        android:textSize="16sp"/>
 
-</RelativeLayout> 
+</RelativeLayout>

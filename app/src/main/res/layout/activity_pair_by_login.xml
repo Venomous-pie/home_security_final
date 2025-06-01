@@ -5,11 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/splash_background_gray"
-    android:padding="16dp"
-    tools:context=".PairByLoginActivity">
+    android:padding="16dp">
 
     <ImageView
-        android:id="@+id/ivBackArrowPairByLogin"
+        android:id="@+id/ivBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_back"
@@ -18,48 +17,127 @@
         android:padding="8dp"/>
 
     <TextView
-        android:id="@+id/tvPairByLoginTitle"
+        android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivBackArrowPairByLogin"
-        android:layout_marginTop="24dp"
-        android:text="Pair up by logging in on the device you prepared"
+        android:layout_below="@id/ivBack"
+        android:layout_marginTop="16dp"
+        android:text="Connect Camera"
         android:textSize="24sp"
         android:textStyle="bold"
         android:textColor="@color/splash_text_gray"/>
 
     <TextView
-        android:id="@+id/tvPairByLoginSubtitle"
+        android:id="@+id/tvInstructions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tvPairByLoginTitle"
+        android:layout_below="@id/tvTitle"
         android:layout_marginTop="8dp"
-        android:text="Log in to the app with the same account on the device you prepared (mobile phone, tablet, or computer)."
+        android:text="Enter the credentials printed on your camera or scan the QR code"
         android:textSize="16sp"
         android:textColor="@color/splash_text_gray"/>
 
-    <ImageView
-        android:id="@+id/ivPairingIllustration"
+    <!-- WiFi Credentials Layout -->
+    <LinearLayout
+        android:id="@+id/layoutWifiCredentials"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_below="@id/tvPairByLoginSubtitle"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvInstructions"
         android:layout_marginTop="32dp"
-        android:src="@drawable/ic_pairing_illustration"
-        android:scaleType="fitCenter"
-        android:contentDescription="Pairing illustration"/>
+        android:orientation="vertical">
 
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etDeviceId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Device ID"
+                android:inputType="text"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:passwordToggleEnabled="true"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Device Password"
+                android:inputType="textPassword"
+                android:maxLines="1" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- Pairing Code Layout -->
+    <LinearLayout
+        android:id="@+id/layoutPairingCode"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvInstructions"
+        android:layout_marginTop="32dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPairingCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter Pairing Code"
+                android:inputType="number"
+                android:maxLines="1"
+                android:maxLength="6" />
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <!-- QR Code Button -->
     <Button
-        android:id="@+id/btnPairByQRCode"
-        style="?attr/materialButtonOutlinedStyle"
+        android:id="@+id/btnScanQr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layoutWifiCredentials"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Scan QR Code"
+        android:drawableStart="@drawable/ic_qr_code"
+        android:drawablePadding="8dp"
+        style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+
+    <!-- Connect Button -->
+    <Button
+        android:id="@+id/btnConnect"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="24dp"
-        android:text="Or pair up by QR code"
-        android:textColor="@color/splash_text_gray"
-        app:strokeColor="@color/splash_text_gray"
-        app:icon="@drawable/ic_qr_code_scanner"
-        app:iconTint="@color/splash_text_gray"
-        app:cornerRadius="20dp"/>
+        android:layout_marginBottom="32dp"
+        android:text="Connect"
+        android:textAllCaps="false"
+        android:paddingTop="12dp"
+        android:paddingBottom="12dp"
+        app:cornerRadius="24dp"/>
 
-</RelativeLayout> 
+    <!-- Progress Bar -->
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        android:indeterminate="true"/>
+
+</RelativeLayout>
